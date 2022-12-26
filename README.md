@@ -1,2 +1,3 @@
-# Coding Academy
-## Vue Frontend Starter
+# Meinday app
+
+## Meinday frontend
