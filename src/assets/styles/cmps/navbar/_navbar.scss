@@ -15,6 +15,7 @@
   }
 
   & > *:not(.divider) {
+    cursor: pointer;
     width: 36px;
     height: 36px;
     position: relative;
