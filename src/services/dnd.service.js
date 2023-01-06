@@ -3,6 +3,10 @@ export const dndService = {
 }
 
 function applyDrag(arr, dragResult) {
+  console.log(
+    '🚀 ~ file: dnd.service.js:6 ~ applyDrag ~ dragResult',
+    dragResult
+  )
   const { removedIndex, addedIndex, payload } = dragResult
 
   if (removedIndex === null && addedIndex === null) return arr

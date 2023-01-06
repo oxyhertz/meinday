@@ -229,12 +229,50 @@ function getEmptyBoard() {
         archivedAt: 1589983468418,
         tasks: [
           {
-            id: 'c101',
-            title: 'Replace logo',
-          },
-          {
-            id: 'c102',
-            title: 'Add Samples',
+            id: 'c122204',
+            title: 'Help me',
+            status: 'in-progress', // monday
+            priority: 'high',
+            description: 'description',
+            comments: [
+              {
+                id: 'ZdPnm',
+                txt: 'also @yaronb please CR this',
+                createdAt: 1590999817436,
+                byMember: {
+                  _id: 'u101',
+                  fullname: 'Tal Tarablus',
+                  imgUrl:
+                    'http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg',
+                },
+              },
+            ],
+            checklists: [
+              {
+                id: 'YEhmF',
+                title: 'Checklist',
+                todos: [
+                  {
+                    id: '212jX',
+                    title: 'To Do 1',
+                    isDone: false,
+                  },
+                ],
+              },
+            ],
+            memberIds: ['u101'],
+            labelIds: ['l101', 'l102'],
+            dueDate: 16156215211,
+            byMember: {
+              _id: 'u101',
+              username: 'Tal',
+              fullname: 'Tal Tarablus',
+              imgUrl:
+                'http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg',
+            },
+            style: {
+              bgColor: '#26de81',
+            },
           },
         ],
         style: {},
@@ -244,12 +282,53 @@ function getEmptyBoard() {
         title: 'Group 2',
         tasks: [
           {
-            id: 'c103',
-            title: 'Do that',
-            archivedAt: 1589983468418,
+            id: 'c104',
+            title: 'Help me',
+            status: 'in-progress', // monday
+            priority: 'high',
+            description: 'description',
+            comments: [
+              {
+                id: 'ZdPnm',
+                txt: 'also @yaronb please CR this',
+                createdAt: 1590999817436,
+                byMember: {
+                  _id: 'u101',
+                  fullname: 'Tal Tarablus',
+                  imgUrl:
+                    'http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg',
+                },
+              },
+            ],
+            checklists: [
+              {
+                id: 'YEhmF',
+                title: 'Checklist',
+                todos: [
+                  {
+                    id: '212jX',
+                    title: 'To Do 1',
+                    isDone: false,
+                  },
+                ],
+              },
+            ],
+            memberIds: ['u101'],
+            labelIds: ['l101', 'l102'],
+            dueDate: 16156215211,
+            byMember: {
+              _id: 'u101',
+              username: 'Tal',
+              fullname: 'Tal Tarablus',
+              imgUrl:
+                'http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg',
+            },
+            style: {
+              bgColor: '#26de81',
+            },
           },
           {
-            id: 'c104',
+            id: 'c1024',
             title: 'Help me',
             status: 'in-progress', // monday
             priority: 'high',
@@ -315,10 +394,6 @@ function getEmptyBoard() {
       },
     ],
 
-    cmpsOrder: ['status-picker', 'member-picker', 'date-picker'],
-  })
-  await storageService.post(STORAGE_KEY, {
-    vendor: 'Subali Rahok 2',
-    price: 240,
+    cmpsOrder: ['status', 'members', 'date', 'priority'],
   })
 })()
