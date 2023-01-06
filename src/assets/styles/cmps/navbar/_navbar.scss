@@ -1,0 +1,62 @@
+.main-navbar {
+  width: 66px;
+  background-color: $sidenav-bg;
+  min-height: 100vh;
+  padding: 8px 16px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 1.5;
+  .divider {
+    background-color: #676879;
+    height: 1px;
+    width: 50px;
+    margin-bottom: 8px;
+  }
+
+  & > *:not(.divider) {
+    width: 36px;
+    height: 36px;
+    position: relative;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 5px;
+
+    &:hover {
+      background-color: $sidenav-links-hover;
+    }
+
+    a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+    }
+
+    &:has(a.router-link-exact-active) {
+      background-color: $sidenav-active-link;
+    }
+
+    &:has(a.router-link-exact-active) .selected-view-indication {
+      opacity: 1;
+    }
+
+    & .selected-view-indication {
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 8px 6px 8px 0;
+      position: absolute;
+      right: -15px;
+      transition: opacity 0.1s ease-in-out;
+      opacity: 0;
+      border-color: transparent #fff transparent transparent;
+    }
+  }
+
+  img {
+    width: 40px;
+  }
+}

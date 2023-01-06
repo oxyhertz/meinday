@@ -1,8 +1,7 @@
 <template>
   <section>
-    <user-msg/>
-    <app-header />
-    <router-view/>
+    <user-msg />
+    <router-view />
   </section>
 </template>
 
@@ -20,7 +19,7 @@ export default {
   created() {
     console.log('Vue App created')
     const user = userService.getLoggedinUser()
-    if (user)  store.commit({type: 'setLoggedinUser', user})
+    if (user) store.commit({ type: 'setLoggedinUser', user })
   },
   components: {
     appHeader,
