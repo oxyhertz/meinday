@@ -108,7 +108,9 @@ function getEmptyBoard() {
             title: 'Add Samples',
           },
         ],
-        style: {},
+        style: {
+          color: getRandom,
+        },
       },
       {
         id: 'g102',
@@ -275,7 +277,9 @@ function getEmptyBoard() {
             },
           },
         ],
-        style: {},
+        style: {
+          color: utilService.getRandomColor(),
+        },
       },
       {
         id: 'g102',
@@ -374,7 +378,9 @@ function getEmptyBoard() {
             },
           },
         ],
-        style: {},
+        style: {
+          color: utilService.getRandomColor(),
+        },
       },
     ],
     activities: [

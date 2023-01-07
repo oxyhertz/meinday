@@ -1,10 +1,14 @@
 <template>
     <section class="board-details" v-if="board">
-        <h2>{{ board.title }}</h2>
-        <group-list @updateGroups="updateBoard" :groups="board.groups" :board="board" />
+        <workspace-menu />
+        <main>
+            <h2>{{ board.title }}</h2>
+            <group-list @updateGroups="updateBoard" :groups="board.groups" :board="board" />
+        </main>
     </section>
 </template>
 <script>
+import workspaceMenu from './workspace-menu.vue'
 import groupList from './group/group-list.vue'
 export default {
     name: 'board-details',
@@ -26,7 +30,8 @@ export default {
         },
     },
     components: {
-        groupList
+        groupList,
+        workspaceMenu
     },
     computed: {
         board() {

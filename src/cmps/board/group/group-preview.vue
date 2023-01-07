@@ -1,5 +1,9 @@
 <template>
     <section class="group-preview">
+        <section class="group-title">
+            <arrow-down :color="group.style?.color" />
+            <h4 :style="{ color: group.style?.color }">{{ group.title }}</h4>
+        </section>
         <section class="lables" :style="{ display: 'flex' }">
             <div>Task</div>
             <Container orientation="horizontal" :style="{ display: 'flex' }" @drop="onDrop">
@@ -29,7 +33,7 @@ import status from '../task/dynamic-cmps/status.vue'
 import date from '../task/dynamic-cmps/date.vue';
 import members from '../task/dynamic-cmps/members.vue';
 import priority from '../task/dynamic-cmps/priority.vue';
-
+import arrowDown from '../../icons/arrow-down.vue';
 export default {
     props: {
         group: {
@@ -54,11 +58,9 @@ export default {
             this.$store.dispatch({ type: "updateBoard", board: newBoard })
         },
         onCardDrop(groupId, dropResult) {
-            console.log("🚀 ~ file: group-preview.vue:58 ~ onCardDrop ~ dropResult", dropResult)
-            // console.log("🚀 ~ file: group-preview.vue:58 ~ onCardDrop ~ groupId", groupId)
             this.$emit('onCardDrop', groupId, dropResult)
         },
-        getCardPayload(columnId) {
+        getCardPayload() {
             return index => {
                 return this.group.tasks[index]
             }
@@ -83,7 +85,8 @@ export default {
         date,
         members,
         status,
-        priority
+        priority,
+        arrowDown
     }
 }
 </script>

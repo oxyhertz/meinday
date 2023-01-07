@@ -1,0 +1,65 @@
+.board-details {
+  display: flex;
+  main {
+    padding-top: 16px;
+  }
+  .workspace-menu {
+    position: relative;
+    width: 29px;
+    min-height: 100vh;
+    background-color: $worspace-menu-bg;
+    border-right: 1px solid #d0d4e6;
+    transition: width 0.1s cubic-bezier(0, 0, 0.35, 1);
+    margin-right: 38px;
+    &.expanded {
+      width: 255px;
+    }
+
+    &.expanded .workspace-toggle-btn {
+      transform: rotate(180deg);
+      &:hover {
+        left: calc(100% - 21px);
+      }
+    }
+    .workspace-toggle-btn {
+      border-radius: 20px;
+      padding: 5px 7px 5px 5px;
+      top: 20px;
+      left: calc(100% - 14px);
+      transition: background-color 100ms ease, padding-left 100ms ease,
+        padding-right 100ms ease, border-color 100ms ease, color 100ms ease;
+      animation-name: slideInFromLeft;
+      animation-duration: 0.15s;
+      animation-timing-function: cubic-bezier(0, 0, 0.35, 1);
+      animation-delay: 0s;
+      animation-iteration-count: 1;
+      animation-direction: normal;
+      border: 1px solid;
+      border-color: #c3c6d4;
+      background-color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      position: absolute;
+      z-index: 100;
+
+      &:hover {
+        padding-right: 5px;
+        padding-left: 16px;
+        background-color: #0073ea;
+        border-color: #0073ea;
+        color: #ffffff;
+      }
+    }
+  }
+}
+
+@keyframes slideInFromLeft {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}

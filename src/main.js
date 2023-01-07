@@ -7,7 +7,6 @@ import Popper from 'vue3-popper'
 import './assets/styles/main.scss'
 import rootCmp from './root-cmp.vue'
 import 'floating-vue/dist/style.css'
-
 const app = createApp(rootCmp)
 app.use(router)
 app.use(store)
