@@ -2,6 +2,19 @@
   .group-title {
     margin-left: 4px;
     display: flex;
+    .arrow-down {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .pulse-menu-btn {
+      align-items: flex-end;
+    }
+    &:hover {
+      .pulse-menu-btn {
+        opacity: 1;
+      }
+    }
     svg {
       cursor: pointer;
     }
@@ -16,6 +29,75 @@
       line-height: 24px;
       margin: 0;
       font-weight: 500;
+    }
+  }
+
+  .grid {
+    display: grid;
+    .pulse-menu-btn {
+      align-self: center;
+      justify-self: center;
+    }
+
+    &:hover {
+      .pulse-menu-btn {
+        opacity: 1;
+      }
+    }
+  }
+  .labels {
+    grid-template-columns: 30px 6px 38px 364px 1500px;
+
+    & > *:not(:first-child) {
+      border-top: 1px solid $group-border-color;
+      border-bottom: 1px solid $group-border-color;
+      border-right: 1px solid $group-border-color;
+    }
+
+    .smooth-dnd-container > *:not(:last-child) {
+      border-right: 1px solid $group-border-color;
+    }
+    .column-header {
+      width: 140px;
+    }
+  }
+
+  .group-grid {
+    grid-template-rows: 2.25rem;
+    grid-auto-flow: column;
+    & > *:not(:first-child) {
+      border-bottom: 1px solid $group-border-color;
+      border-right: 1px solid $group-border-color;
+    }
+
+    &:hover {
+      & > *:not(:first-child) {
+        box-shadow: 4px 3px 6px -3px #c3c6d4;
+        background-color: rgb(245, 246, 248);
+      }
+    }
+  }
+
+  .task-title-container {
+    padding-left: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .open-chat {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 65px;
+      border-left: 1px solid $group-border-color;
+      height: 100%;
+      cursor: pointer;
+      svg {
+        transition: fill 200ms ease;
+        &:hover {
+          fill: #0073ea;
+        }
+      }
     }
   }
 }

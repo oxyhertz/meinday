@@ -27,7 +27,8 @@
       top: 20px;
       left: calc(100% - 14px);
       transition: background-color 100ms ease, padding-left 100ms ease,
-        padding-right 100ms ease, border-color 100ms ease, color 100ms ease;
+        padding-right 100ms ease, border-color 100ms ease, color 100ms ease,
+        left 300ms ease;
       animation-name: slideInFromLeft;
       animation-duration: 0.15s;
       animation-timing-function: cubic-bezier(0, 0, 0.35, 1);

@@ -12,4 +12,5 @@ app.use(router)
 app.use(store)
 app.use(FloatingVue)
 app.component('Popper', Popper)
+
 app.mount('#app')
