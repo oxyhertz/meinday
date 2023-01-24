@@ -46,7 +46,7 @@
     }
   }
   .labels {
-    grid-template-columns: 30px 6px 38px 364px 1500px;
+    grid-template-columns: 30px 6px 38px 360px 1500px;
 
     & > *:not(:first-child) {
       border-top: 1px solid $group-border-color;
@@ -71,6 +71,9 @@
     }
 
     &:hover {
+      .task-name .expand-task {
+        opacity: 1;
+      }
       & > *:not(:first-child) {
         box-shadow: 4px 3px 6px -3px #c3c6d4;
         background-color: rgb(245, 246, 248);
@@ -84,6 +87,25 @@
     align-items: center;
     justify-content: space-between;
 
+    .task-name {
+      display: flex;
+      flex-grow: 1;
+      align-items: center;
+      justify-content: space-between;
+
+      .expand-task {
+        font-size: rem(13px);
+        cursor: pointer;
+        opacity: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding-right: 10px;
+        span {
+          padding-left: 5px;
+        }
+      }
+    }
     .open-chat {
       display: flex;
       align-items: center;

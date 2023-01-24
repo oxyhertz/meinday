@@ -28,7 +28,7 @@
             @drop="(e) => onCardDrop(group, e)">
             <Draggable v-for="task in group.tasks" :key="task.id">
                 <section class="group-grid grid"
-                    :style="{ 'grid-template-columns': `30px 6px 38px 364px repeat(${cmpsOrder.length}, 140px)` }">
+                    :style="{ 'grid-template-columns': `30px 6px 38px 360px repeat(${cmpsOrder.length}, 140px)` }">
                     <pulse-menu-button />
                     <left-indicator :color="group.style?.color" />
 
@@ -38,7 +38,10 @@
                     <section class="grid-item task-title-container">
                         <div class="task-name">
                             <p>{{ task.title }}</p>
-                            <div class=""></div>
+                            <div class="expand-task" v-tooltip="'Open item page'">
+                                <expand-icon />
+                                <span>Open</span>
+                            </div>
                         </div>
                         <div class="open-chat">
                             <chat-grey />
@@ -63,6 +66,7 @@ import arrowDown from '../../icons/arrow-down.vue';
 import pulseMenuButton from '../../pulse-menu-button.vue';
 import leftIndicator from '../task/left-indicator.vue';
 import chatGrey from '../../icons/chat-grey.vue';
+import expandIcon from '../../icons/expand-icon.vue'
 export default {
     props: {
         group: {
@@ -118,7 +122,8 @@ export default {
         pulseMenuButton,
         arrowDown,
         leftIndicator,
-        chatGrey
+        chatGrey,
+        expandIcon
     }
 }
 </script>
