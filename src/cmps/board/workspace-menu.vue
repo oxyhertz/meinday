@@ -1,6 +1,7 @@
 <template>
     <aside class="workspace-menu" :class="{ 'expanded': isOpen }">
-        <div class="workspace-toggle-btn" @click="isOpen = !isOpen">
+        <div class="workspace-toggle-btn" v-tooltip="(isOpen ? 'Close' : 'Open') + ' navigation'"
+            @click="isOpen = !isOpen">
             <right-arrow />
         </div>
     </aside>
