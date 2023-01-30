@@ -1,8 +1,13 @@
 <template>
-    <span class="emoji-picker">
-        <emojiIcon @click="toggleEmoji" />
-        <EmojiPicker v-if="isEmojiMenuOpen" :native="true" @select="onSelectEmoji" />
-    </span>
+
+    <Popper>
+        <span class="emoji-picker">
+            <emojiIcon @click="toggleEmoji" />
+        </span>
+        <template #content>
+            <EmojiPicker v-if="isEmojiMenuOpen" :native="true" @select="onSelectEmoji" />
+        </template>
+    </Popper>
 </template>
 <script>
 import emojiIcon from './icons/emoji-icon.vue'

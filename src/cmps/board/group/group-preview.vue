@@ -10,7 +10,7 @@
         </section>
         <section class="labels grid">
             <pulse-menu-button />
-            <left-indicator :color="group.style?.color" isTop="true" />
+            <left-indicator :color="group.style?.color" :isTop="true" />
             <div>
                 <label for="">
 
