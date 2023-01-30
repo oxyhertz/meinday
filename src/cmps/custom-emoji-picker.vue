@@ -1,5 +1,4 @@
 <template>
-
     <Popper>
         <span class="emoji-picker">
             <emojiIcon @click="toggleEmoji" />
@@ -28,12 +27,10 @@ export default {
     },
     methods: {
         onSelectEmoji(emoji) {
-            console.log(emoji)
             this.$emit('selectEmoji', emoji)
         },
         toggleEmoji() {
             this.isEmojiMenuOpen = !this.isEmojiMenuOpen
-            console.log('test')
         }
     },
     computed: {
