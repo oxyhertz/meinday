@@ -24,7 +24,8 @@ h3,
 h4,
 h5,
 h6 {
-  margin: 0 0 0.6em;
+  // margin: 0 0 0.6em;
+  margin: 0;
   line-height: 1;
 }
 
@@ -58,4 +59,16 @@ ul {
   list-style: none;
   padding: 0;
   margin: 0;
+}
+
+.heading-text {
+  font-family: Poppins, Roboto, Rubik, Noto Kufi Arabic, Noto Sans JP,
+    sans-serif;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 40px;
+  border-radius: 4px;
+  min-width: 0;
+  padding: 0 4px;
+  color: #323338;
 }
