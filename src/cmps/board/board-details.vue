@@ -2,7 +2,7 @@
     <section class="board-details" v-if="board">
         <workspace-menu />
         <main>
-            <h2>{{ board.title }}</h2>
+            <board-name-heading />
             <group-list @updateGroups="updateBoard" :groups="board.groups" :board="board" />
         </main>
     </section>
@@ -10,6 +10,7 @@
 <script>
 import workspaceMenu from './workspace-menu.vue'
 import groupList from './group/group-list.vue'
+import boardNameHeading from './board-name-heading.vue'
 export default {
     name: 'board-details',
     methods: {
@@ -31,7 +32,8 @@ export default {
     },
     components: {
         groupList,
-        workspaceMenu
+        workspaceMenu,
+        boardNameHeading
     },
     computed: {
         board() {
