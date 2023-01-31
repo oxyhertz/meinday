@@ -9,8 +9,8 @@
             <h4 v-tooltip.top-center="'Click to edit'" v-if="!isTitleEdit" :style="{ color: group.style?.color }"
                 @click="isTitleEdit = true">{{ group.title }}
             </h4>
-            <input v-click-outside="() => isTitleEdit = false" class="group-title-input" v-focus v-else type="text"
-                v-model="group.title">
+            <input :style="{ color: group.style?.color }" v-click-outside="() => isTitleEdit = false"
+                class="group-title-input" v-focus v-else type="text" v-model="group.title">
         </section>
         <section class="labels grid">
             <pulse-menu-button />
