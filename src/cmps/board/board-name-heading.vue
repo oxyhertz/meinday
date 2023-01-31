@@ -14,9 +14,10 @@
             <span v-tooltip="'Show board description'">
                 <exclamation-mark-icon />
             </span>
-            <span v-tooltip="`${isFavoriteBoard ? 'Remove' : 'Add'} to favorites`" @click="onToggleFavBoard"
-                v-if="loggedinUser">
-                <i :class="`fa-${isFavoriteBoard ? 'solid' : 'regular'} fa-star`"></i>
+            <span class="board-fav-icon-container" v-tooltip="`${isFavoriteBoard ? 'Remove' : 'Add'} to favorites`"
+                @click="onToggleFavBoard" v-if="loggedinUser">
+                <i :class="`fa-${isFavoriteBoard ? 'solid' : 'regular'} fa-star`"
+                    :style="{ color: isFavoriteBoard ? '#ffcb00' : '' }"></i>
             </span>
         </section>
     </section>

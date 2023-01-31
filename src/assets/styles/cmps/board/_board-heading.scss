@@ -21,6 +21,7 @@
     margin-inline-start: 5px;
     & > * {
       @include heading-icon;
+      color: #676879;
     }
   }
 
@@ -32,5 +33,11 @@
     position: absolute;
     right: 5px;
     top: 5px;
+  }
+
+  .board-fav-icon-container {
+    &:active {
+      transform: scale(0.95) translate3d(0, 0, 0);
+    }
   }
 }
