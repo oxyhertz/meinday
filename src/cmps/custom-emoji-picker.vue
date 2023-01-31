@@ -42,3 +42,11 @@ export default {
     }
 }
 </script>
+
+<style lamg="scss" scoped>
+.emoji-picker {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+</style>

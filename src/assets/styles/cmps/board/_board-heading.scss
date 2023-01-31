@@ -1,0 +1,36 @@
+.board-title-container {
+  display: flex;
+
+  .title-input {
+    background-color: #ffffff;
+    display: inline-block;
+    max-height: 100%;
+    margin: auto 0;
+    padding: 0 4px;
+    outline: none;
+    border: 1px solid;
+    border-color: #0085ff;
+    vertical-align: top;
+    text-align: left;
+  }
+
+  .icon-actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-inline-start: 5px;
+    & > * {
+      @include heading-icon;
+    }
+  }
+
+  .title-input-container {
+    position: relative;
+  }
+  .emoji-picker-input {
+    @include heading-icon;
+    position: absolute;
+    right: 5px;
+    top: 5px;
+  }
+}

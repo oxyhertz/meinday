@@ -2,16 +2,28 @@
     <section class="board-title-container" v-if="board">
         <h1 v-if="!isEditable" @click="isEditable = !isEditable" class="board-title single-line heading-text"
             v-tooltip="'Click to Edit'">{{ board.title }}</h1>
-        <input class="title-input heading-text" v-click-outside="() => isEditable = false" v-else type="text" name=""
-            v-model="board.title">
+        <span class="title-input-container" v-else>
+            <input class="title-input heading-text" v-click-outside="() => isEditable = false" type="text" name=""
+                v-model="board.title">
+            <span class="emoji-picker-input">
+                <emoji-picker @selectEmoji="selectEmoji" />
+            </span>
+        </span>
+
         <section class="icon-actions">
-            <emoji-picker @selectEmoji="selectEmoji" />
+            <span>
+                <exclamation-mark-icon />
+            </span>
+            <span>
+                <i class="fa-regular fa-star"></i>
+            </span>
         </section>
     </section>
 </template>
 
 <script>
 import emojiPicker from '../custom-emoji-picker.vue';
+import exclamationMarkIcon from '../icons/exclamation-mark-icon.vue';
 export default {
     name: 'board-name-heading',
     data() {
@@ -32,30 +44,12 @@ export default {
         },
     },
     components: {
-        emojiPicker
+        emojiPicker,
+        exclamationMarkIcon
     }
 }
 </script>
 <style lang="scss" scoped>
-.board-title-container {
-    display: flex;
-
-    .title-input {
-        background-color: #ffffff;
-        display: inline-block;
-        // width: 100%;
-        max-height: 100%;
-        margin: auto 0;
-        padding: 0 4px;
-        outline: none;
-        border: 1px solid;
-        border-color: #0085ff;
-        vertical-align: top;
-        text-align: left;
-    }
-
-}
-
 h1.board-title {
     border: 1px solid rgba(0, 0, 0, 0);
 
