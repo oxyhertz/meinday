@@ -3,8 +3,8 @@
         <h1 v-if="!isEditable" @click="isEditable = !isEditable" class="board-title single-line heading-text"
             v-tooltip="'Click to Edit'">{{ board.title }}</h1>
         <span class="title-input-container" v-else>
-            <input class="title-input heading-text" v-click-outside="() => isEditable = false" type="text" name=""
-                v-model="board.title">
+            <input class="title-input heading-text" v-focus v-click-outside="() => isEditable = false" type="text"
+                name="" v-model="board.title">
             <span class="emoji-picker-input">
                 <emoji-picker @selectEmoji="selectEmoji" />
             </span>
@@ -76,14 +76,5 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-h1.board-title {
-    border: 1px solid rgba(0, 0, 0, 0);
 
-    &:hover {
-        cursor: text;
-        border: 1px solid;
-        border-color: #e6e9ef;
-    }
-
-}
 </style>

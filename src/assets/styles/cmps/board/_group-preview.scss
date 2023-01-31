@@ -1,11 +1,26 @@
 .group-preview {
+  margin-block-end: 35px;
   .group-title {
     margin-left: 4px;
     display: flex;
+    margin-block-end: 10px;
+    .group-title-input {
+      @include title-text-input;
+      font-family: Poppins, Roboto, Rubik, Noto Kufi Arabic, Noto Sans JP,
+        sans-serif;
+      font-weight: 500;
+      border-radius: 4px;
+      min-width: 0;
+      padding: 0 4px;
+      color: #323338;
+      line-height: 24px;
+      font-size: rem(18px);
+    }
     .arrow-down {
       display: flex;
       align-items: center;
       justify-content: center;
+      padding-inline-start: 12px;
     }
     .pulse-menu-btn {
       align-items: flex-end;
@@ -22,13 +37,14 @@
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
-      border: 1px solid rgba(0, 0, 0, 0);
+      font-family: $title-font-family;
       border-radius: 4px;
       min-width: 0;
       padding: 0 4px;
       line-height: 24px;
       margin: 0;
       font-weight: 500;
+      @include title-text;
     }
   }
 
@@ -42,6 +58,7 @@
     &:hover {
       .pulse-menu-btn {
         opacity: 1;
+        margin-inline-end: 4px;
       }
     }
   }

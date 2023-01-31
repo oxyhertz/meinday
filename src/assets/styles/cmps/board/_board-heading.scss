@@ -1,17 +1,14 @@
 .board-title-container {
   display: flex;
+  padding-inline-start: 23px;
+
+  h1.board-title {
+    padding-inline-end: 10px;
+    @include title-text;
+  }
 
   .title-input {
-    background-color: #ffffff;
-    display: inline-block;
-    max-height: 100%;
-    margin: auto 0;
-    padding: 0 4px;
-    outline: none;
-    border: 1px solid;
-    border-color: #0085ff;
-    vertical-align: top;
-    text-align: left;
+    @include title-text-input;
   }
 
   .icon-actions {

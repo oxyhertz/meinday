@@ -72,3 +72,15 @@ ul {
   padding: 0 4px;
   color: #323338;
 }
+
+// Customizing Popper
+.v-popper__inner {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  font-family: Figtree, Roboto, Rubik, Noto Kufi Arabic, Noto Sans JP;
+}
+
+.v-popper--theme-my-theme .v-popper__inner {
+  border-radius: 4px;
+}

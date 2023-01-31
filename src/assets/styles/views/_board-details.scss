@@ -10,7 +10,7 @@
     background-color: $worspace-menu-bg;
     border-right: 1px solid #d0d4e6;
     transition: width 0.1s cubic-bezier(0, 0, 0.35, 1);
-    margin-right: 38px;
+    margin-inline-end: 10px;
     &.expanded {
       width: 255px;
     }
