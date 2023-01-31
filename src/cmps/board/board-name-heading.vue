@@ -11,11 +11,12 @@
         </span>
 
         <section class="icon-actions">
-            <span>
+            <span v-tooltip="'Show board description'">
                 <exclamation-mark-icon />
             </span>
-            <span>
-                <i class="fa-regular fa-star"></i>
+            <span v-tooltip="`${isFavoriteBoard ? 'Remove' : 'Add'} to favorites`" @click="onToggleFavBoard"
+                v-if="loggedinUser">
+                <i :class="`fa-${isFavoriteBoard ? 'solid' : 'regular'} fa-star`"></i>
             </span>
         </section>
     </section>
@@ -32,9 +33,26 @@ export default {
             isEmojiMenuOpen: false
         }
     },
+    created() {
+        console.log(this.loggedinUser)
+    },
     methods: {
         selectEmoji(emoji) {
             console.log("🚀 ~ file: board-name-heading.vue:25 ~ selectEmoji ~ emoji", emoji)
+
+        },
+        onToggleFavBoard() {
+            const user = JSON.parse(JSON.stringify(this.$store.getters.loggedinUser));
+            if (this.isFavoriteBoard) {
+                user.boards.splice(user.boards.indexOf(this.board._id), 1)
+            } else {
+                user.boards.push(this.board._id)
+            }
+
+            this.$store.dispatch({ type: "updateUser", user })
+
+            console.log('user', user.boards)
+            console.log("🚀 ~ file: board-name-heading.vue:42 ~ onToggleFavBoard ~ user", user)
 
         }
     },
@@ -42,6 +60,13 @@ export default {
         board() {
             return this.$store.getters.board
         },
+        loggedinUser() {
+            return this.$store.getters.loggedinUser
+        },
+        isFavoriteBoard() {
+            return this.loggedinUser.boards?.includes(this.board._id)
+
+        }
     },
     components: {
         emojiPicker,
