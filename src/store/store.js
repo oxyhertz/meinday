@@ -4,6 +4,7 @@ import { userStore } from './user.store.js'
 import { carStore } from './car.store.js'
 import { reviewStore } from './review.store.js'
 import { boardStore } from './board.store.js'
+import { taskStore } from './task.store.js'
 
 export const store = Vuex.createStore({
   strict: true,
@@ -12,6 +13,7 @@ export const store = Vuex.createStore({
     carStore,
     reviewStore,
     boardStore,
+    taskStore,
   },
   state: {},
   mutations: {},

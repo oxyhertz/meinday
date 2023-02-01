@@ -55,7 +55,7 @@ export default {
                 }
 
                 newColumn.tasks = dndService.applyDrag(newColumn.tasks, dropResult)
-                console.log("🚀 ~ file: group-list.vue:58 ~ onCardDrop ~ newColumn.tasks", newColumn.tasks)
+                // console.log("🚀 ~ file: group-list.vue:58 ~ onCardDrop ~ newColumn.tasks", newColumn.tasks)
                 copyGroups.splice(itemIndex, 1, newColumn)
                 this.copyGroups = copyGroups
                 // console.log("🚀 ~ file: group-list.vue:64 ~ onCardDrop ~ copyGroups", copyGroups)

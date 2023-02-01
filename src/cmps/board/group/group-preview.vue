@@ -14,10 +14,13 @@
         </section>
         <section class="labels grid">
             <pulse-menu-button />
-            <left-indicator :color="group.style?.color" isTop="true" />
-            <div>
-                <label for="">
-
+            <left-indicator :color="group.style?.color" :isTop="true" />
+            <div class="task-checkbox">
+                <label>
+                    <input name="task-checkbox" type="checkbox" @change="toggleSelectAll" v-model="isSelectAll">
+                    <div class="styled-checkbox" :class="{ 'checked-bg': isSelectAll }">
+                        <checked-mark-icon />
+                    </div>
                 </label>
             </div>
             <div>Task</div>
@@ -31,13 +34,18 @@
         <Container group-name="col-items" orientation="vertical" :get-child-payload="getCardPayload(group)"
             @drop="(e) => onCardDrop(group, e)">
             <Draggable v-for="task in group.tasks" :key="task.id">
-                <section class="group-grid grid"
-                    :style="{ 'grid-template-columns': `30px 6px 38px 360px repeat(${cmpsOrder.length}, 140px)` }">
+                <section class="group-grid grid" :class="{ 'selected': selectedTasks.includes(task) }"
+                    :style="{ 'grid-template-columns': `30px 6px 33px 360px repeat(${cmpsOrder.length}, 140px)` }">
                     <pulse-menu-button />
                     <left-indicator :color="group.style?.color" />
-
-                    <section class="grid-item">
-                        <input type="checkbox">
+                    <section class="grid-item task-checkbox">
+                        <label>
+                            <input :name="`checkbox-${task.id}`" type="checkbox" @change="onCheck(task)" :value="task"
+                                v-model="selectedTasks">
+                            <div class="styled-checkbox" :class="{ 'checked-bg': selectedTasks.includes(task) }">
+                                <checked-mark-icon />
+                            </div>
+                        </label>
                     </section>
                     <section class="grid-item task-title-container">
                         <div class="task-name">
@@ -71,6 +79,7 @@ import pulseMenuButton from '../../pulse-menu-button.vue';
 import leftIndicator from '../task/left-indicator.vue';
 import chatGrey from '../../icons/chat-grey.vue';
 import expandIcon from '../../icons/expand-icon.vue'
+import checkedMarkIcon from '../../icons/checked-mark-icon.vue';
 export default {
     props: {
         group: {
@@ -83,7 +92,8 @@ export default {
         return {
             cmpsOrder: null,
             isTitleEdit: false,
-
+            selectedTasks: [],
+            isSelectAll: false,
         }
     },
     created() {
@@ -102,6 +112,23 @@ export default {
         getCardPayload() {
             return index => {
                 return this.group.tasks[index]
+            }
+        },
+        onCheck(task) {
+            if (this.isSelectAll && this.selectedTasks.length !== this.group.tasks.length) {
+                this.isSelectAll = false
+            }
+            const selectedTask = this.selectedTasks.find(t => t.id === task.id)
+            if (!selectedTask) this.$store.dispatch({ type: "removeSelectedTask", taskId: task.id })
+            else this.$store.dispatch({ type: "addSelectedTask", task })
+        },
+        toggleSelectAll() {
+            if (this.isSelectAll) {
+                this.selectedTasks = this.group.tasks.map(task => task)
+                this.$store.dispatch({ type: "addSelectedTasks", tasks: this.selectedTasks })
+            } else {
+                this.selectedTasks = []
+                this.$store.dispatch({ type: 'removeSelectedTasks', tasks: this.group.tasks })
             }
         }
     },
@@ -129,7 +156,8 @@ export default {
         arrowDown,
         leftIndicator,
         chatGrey,
-        expandIcon
+        expandIcon,
+        checkedMarkIcon
     }
 }
 </script>
