@@ -12,7 +12,12 @@ export const taskStore = {
       state.selectedTasks = [task, ...state.selectedTasks]
     },
     setTasks(state, { tasks }) {
-      state.selectedTasks = [...tasks, ...state.selectedTasks]
+      //Check if duplicates
+      const uniqueTasks = tasks.filter(
+        (task) => !state.selectedTasks.find((t) => task.id !== t.id)
+      )
+
+      state.selectedTasks = [...uniqueTasks, ...state.selectedTasks]
     },
     removeTask(state, { taskId }) {
       state.selectedTasks = state.selectedTasks.filter(
