@@ -1,0 +1,15 @@
+.task-batch-actions {
+  transition: opacity 150ms, transform 150ms;
+  position: absolute;
+  width: 800px;
+  height: 63px;
+  z-index: 1000001;
+  background-color: #ffffff;
+  border-radius: 5px;
+  box-shadow: 0px 15px 50px rgba(0, 0, 0, 0.3);
+  pointer-events: auto;
+  flex-direction: row;
+  display: flex;
+  bottom: 35px;
+  user-select: none;
+}
