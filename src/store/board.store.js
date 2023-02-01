@@ -130,5 +130,27 @@ export const boardStore = {
         throw err
       }
     },
+    async removeTasks(context, { tasks }) {
+      try {
+        const newBoard = JSON.parse(JSON.stringify(context.state.board))
+        newBoard.groups.forEach((group) => {
+          group.tasks = group.tasks.filter(
+            (t) => !tasks.find((selectedTask) => selectedTask.id === t.id)
+          )
+        })
+        console.log(
+          '🚀 ~ file: board.store.js:136 ~ removeTasks ~ newBoard',
+          newBoard.groups
+        )
+
+        context.dispatch({ type: 'updateBoard', board: newBoard })
+
+        // const msg = await boardService.addBoardMsg(boardId, txt)
+        // context.commit({ type: 'addBoardMsg', boardId, msg })
+      } catch (err) {
+        console.log('boardStore: Error in addBoardMsg', err)
+        throw err
+      }
+    },
   },
 }

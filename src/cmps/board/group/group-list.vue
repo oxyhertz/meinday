@@ -5,12 +5,16 @@
                 <group-preview @onCardDrop="onCardDrop" :group="group" />
             </Draggable>
         </Container>
+        <task-batch-actions />
     </section>
 </template>
 <script>
 import { Container, Draggable } from 'vue3-smooth-dnd'
 import { dndService } from '../../../services/dnd.service'
 import groupPreview from './group-preview.vue'
+import taskBatchActions from '../task-batch-actions.vue'
+
+
 export default {
     props: {
         groups: {
@@ -28,8 +32,13 @@ export default {
             copyGroups: null,
         }
     },
-    created() {
-        this.copyGroups = JSON.parse(JSON.stringify(this.groups))
+    watch: {
+        board: {
+            handler() {
+                this.copyGroups = JSON.parse(JSON.stringify(this.board.groups))
+            },
+            immediate: true,
+        }
     },
     methods: {
         onDrop(dropResult) {
@@ -68,6 +77,7 @@ export default {
         groupPreview,
         Container,
         Draggable,
+        taskBatchActions
     },
 }
 </script>

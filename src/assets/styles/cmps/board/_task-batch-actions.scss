@@ -10,6 +10,66 @@
   pointer-events: auto;
   flex-direction: row;
   display: flex;
-  bottom: 35px;
+  left: 6%;
+  bottom: -190px;
   user-select: none;
+  font-family: Figtree, Roboto, Rubik, Noto Kufi Arabic, Noto Sans JP,
+    sans-serif;
+  color: #323338de;
+  font-weight: 300;
+
+  & > *:not(:first-child):not(:nth-child(2)) {
+    /* your styles here */
+    &:hover {
+      i {
+        color: #0073ea;
+      }
+    }
+  }
+  .nums-of-tasks {
+    width: 63px;
+    color: #ffffff;
+    background-color: #0073ea;
+    border-radius: 5px 0px 0px 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    cursor: default;
+    font-size: rem(24px);
+    font-weight: 400;
+  }
+
+  .actions-title {
+    font-size: rem(20px);
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    flex: 1;
+    cursor: default;
+    padding-inline-start: 20px;
+    max-width: 300px;
+  }
+
+  .batch-actions-item {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin-right: 20px;
+    cursor: pointer;
+    padding-block-start: 5px;
+    .action-name {
+      font-size: 12px;
+    }
+  }
+  .close-actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 63px;
+    cursor: pointer;
+    text-align: center;
+    border-left: 2px solid;
+    border-left-color: #c3c6d4;
+  }
 }

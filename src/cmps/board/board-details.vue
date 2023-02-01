@@ -29,6 +29,15 @@ export default {
             },
             immediate: true,
         },
+        board: {
+            handler() {
+                console.log('holaas')
+                // if (this.boardId) {
+                //     this.$store.dispatch({ type: "loadBoard", boardId: this.boardId })
+                // }
+            },
+            immediate: true,
+        },
     },
     components: {
         groupList,

@@ -14,7 +14,7 @@ export const taskStore = {
     setTasks(state, { tasks }) {
       //Check if duplicates
       const uniqueTasks = tasks.filter(
-        (task) => !state.selectedTasks.find((t) => task.id !== t.id)
+        (task) => !state.selectedTasks.find((t) => task.id === t.id)
       )
 
       state.selectedTasks = [...uniqueTasks, ...state.selectedTasks]

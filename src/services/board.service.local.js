@@ -46,6 +46,8 @@ async function save(board) {
   return savedBoard
 }
 
+async function removeTasks(tasks) {}
+
 async function addBoardMsg(boardId, txt) {
   // Later, this is all done by the backend
   const board = await getById(boardId)
