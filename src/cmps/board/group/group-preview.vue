@@ -49,6 +49,7 @@
                     </section>
                     <section class="grid-item task-title-container">
                         <div class="task-name">
+                            <arrow-down :color="'#c3c6d4'" />
                             <p>{{ task.title }}</p>
                             <div class="expand-task" v-tooltip="'Open item page'">
                                 <expand-icon />

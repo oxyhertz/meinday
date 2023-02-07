@@ -89,6 +89,9 @@
     }
 
     &:hover {
+      .task-name svg {
+        opacity: 1;
+      }
       .task-name .expand-task {
         opacity: 1;
       }
@@ -117,6 +120,11 @@
       flex-grow: 1;
       align-items: center;
       justify-content: space-between;
+      svg {
+        color: #c3c6d4;
+        opacity: 1;
+        transform: rotate(-90deg);
+      }
       p {
         text-overflow: ellipsis;
         overflow: hidden;
