@@ -11,7 +11,7 @@
             <span class="action-name">{{ action.name }}</span>
         </div>
         <div class="close-actions">
-            <i class="fa-solid fa-xmark fa-lg"></i>
+            <i class="fa-solid fa-xmark fa-lg" @click="closeTaskBatch()"></i>
         </div>
     </section>
 </template>
@@ -63,13 +63,12 @@ export default {
     },
     methods: {
         duplicateTasks() {
-            this.$emit('duplicate-tasks')
             this.$store.dispatch({ type: 'duplicateTasks', tasks: this.selectedTasks })
+            this.$store.dispatch({ type: 'clearSelectedTasks' })
 
         },
 
         exportFileExcel() {
-            // this.$emit('export-file-excel')
             console.log('Exporting file to excel')
             const dataToExporet = this.selectedTasks.map((task) => {
                 const newTask = { ...task }
@@ -89,9 +88,7 @@ export default {
             downloadLink.href = window.URL.createObjectURL(dataToDownload);
             downloadLink.download = `${this.board.title}-selected-tasks.xlsx`
             downloadLink.click();
-
         },
-
         archiveTasks() {
             this.$emit('archive-tasks')
         },
@@ -107,6 +104,10 @@ export default {
 
         moveTo() {
             this.$emit('move-to')
+        },
+        closeTaskBatch() {
+            this.$store.dispatch({ type: 'clearSelectedTasks' })
+
         }
 
     },

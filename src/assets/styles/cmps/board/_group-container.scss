@@ -1,3 +1,11 @@
 .groups-container {
   position: relative;
+  font-family: $sub-text-font-family;
+  font-size: rem(14px);
+
+  font-weight: 400;
+
+  .column-header {
+    text-transform: capitalize;
+  }
 }

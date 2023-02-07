@@ -23,10 +23,10 @@
                     </div>
                 </label>
             </div>
-            <div>Task</div>
+            <div class="flex center" v-tooltip="'This title cannot be edited'">Task</div>
             <Container orientation="horizontal" :style="{ display: 'flex' }" @drop="onDrop">
                 <Draggable v-for="(cmp, i) in cmpsOrder" :key="cmp" :style="{ display: 'flex' }">
-                    <div class="column-header">{{ cmp }}</div>
+                    <div class="column-header flex center">{{ cmp }}</div>
                 </Draggable>
             </Container>
         </section>
@@ -136,11 +136,24 @@ export default {
         board() {
             return this.$store.getters.board
         },
+        globalSelectedTasks() {
+            return this.$store.getters.selectedTasks
+        },
     },
     watch: {
         board: {
             handler() {
                 this.cmpsOrder = [...this.board.cmpsOrder]
+            },
+            immediate: true,
+        },
+        globalSelectedTasks: {
+            handler() {
+                if (!this.globalSelectedTasks.length) {
+                    this.selectedTasks = []
+                    this.isSelectAll = false
+                }
+
             },
             immediate: true,
         },

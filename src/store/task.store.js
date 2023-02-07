@@ -19,6 +19,9 @@ export const taskStore = {
 
       state.selectedTasks = [...uniqueTasks, ...state.selectedTasks]
     },
+    clearTasks(state, { tasks }) {
+      state.selectedTasks = []
+    },
     removeTask(state, { taskId }) {
       state.selectedTasks = state.selectedTasks.filter(
         (task) => task.id !== taskId
@@ -62,6 +65,15 @@ export const taskStore = {
       try {
         commit({ type: 'removeTasks', tasks })
         return tasks
+      } catch (err) {
+        console.log('userStore: Error in login', err)
+        throw err
+      }
+    },
+    async clearSelectedTasks({ commit }) {
+      try {
+        commit({ type: 'clearTasks' })
+        return []
       } catch (err) {
         console.log('userStore: Error in login', err)
         throw err
