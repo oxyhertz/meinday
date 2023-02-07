@@ -117,7 +117,12 @@
       flex-grow: 1;
       align-items: center;
       justify-content: space-between;
-
+      p {
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        max-width: 192px;
+      }
       .expand-task {
         font-size: rem(13px);
         cursor: pointer;

@@ -16,6 +16,7 @@
     </section>
 </template>
 <script>
+import { utils, write } from "xlsx";
 export default {
     name: 'task-batch-actions',
     data() {
@@ -68,7 +69,27 @@ export default {
         },
 
         exportFileExcel() {
-            this.$emit('export-file-excel')
+            // this.$emit('export-file-excel')
+            console.log('Exporting file to excel')
+            const dataToExporet = this.selectedTasks.map((task) => {
+                const newTask = { ...task }
+                delete newTask.style
+                delete newTask.comments
+                delete newTask.checklists
+                return newTask
+            })
+            // Create a new workbook and add a worksheet to it
+            const workbook = utils.book_new();
+            const worksheet = utils.json_to_sheet(dataToExporet);
+            utils.book_append_sheet(workbook, worksheet, 'Sheet1');
+
+            // Write the workbook to an XLSX file and prompt the user to download it
+            const dataToDownload = new Blob([write(workbook, { bookType: 'xlsx', type: 'array' })], { type: "application/octet-stream" });
+            const downloadLink = document.createElement("a");
+            downloadLink.href = window.URL.createObjectURL(dataToDownload);
+            downloadLink.download = `${this.board.title}-selected-tasks.xlsx`
+            downloadLink.click();
+
         },
 
         archiveTasks() {
@@ -92,6 +113,9 @@ export default {
     computed: {
         selectedTasks() {
             return this.$store.getters.selectedTasks;
+        },
+        board() {
+            return this.$store.getters.board;
         }
     },
     components: {
