@@ -48,17 +48,7 @@
                         </label>
                     </section>
                     <section class="grid-item task-title-container">
-                        <div class="task-name">
-                            <arrow-down :color="'#c3c6d4'" />
-                            <p>{{ task.title }}</p>
-                            <div class="expand-task" v-tooltip="'Open item page'">
-                                <expand-icon />
-                                <span>Open</span>
-                            </div>
-                        </div>
-                        <div class="open-chat">
-                            <chat-grey />
-                        </div>
+                        <task-title :task="task" />
                     </section>
                     <section class="grid-item" v-for="(cmp, idx) in cmpsOrder" :key="cmp">
                         <component :is="cmp" :task="task"></component>
@@ -81,6 +71,8 @@ import leftIndicator from '../task/left-indicator.vue';
 import chatGrey from '../../icons/chat-grey.vue';
 import expandIcon from '../../icons/expand-icon.vue'
 import checkedMarkIcon from '../../icons/checked-mark-icon.vue';
+import taskTitle from '../task/task-title.vue';
+
 export default {
     props: {
         group: {
@@ -95,6 +87,7 @@ export default {
             isTitleEdit: false,
             selectedTasks: [],
             isSelectAll: false,
+            isEditable: false
         }
     },
     created() {
@@ -169,6 +162,7 @@ export default {
         pulseMenuButton,
         arrowDown,
         leftIndicator,
+        taskTitle,
         chatGrey,
         expandIcon,
         checkedMarkIcon

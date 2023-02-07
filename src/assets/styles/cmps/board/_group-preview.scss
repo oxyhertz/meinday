@@ -110,22 +110,24 @@
   }
 
   .task-title-container {
-    padding-left: 10px;
+    padding-inline-start: 10px;
     display: flex;
     align-items: center;
     justify-content: space-between;
 
     .task-name {
       display: flex;
-      flex-grow: 1;
-      align-items: center;
+      flex: 1;
+      align-items: flex-end;
       justify-content: space-between;
-      svg {
-        color: #c3c6d4;
-        opacity: 1;
+
+      & > svg {
+        transition: opacity 0.2s ease-in-out;
+        opacity: 0;
         transform: rotate(-90deg);
+        margin-inline-end: 9px;
       }
-      p {
+      .task-title {
         text-overflow: ellipsis;
         overflow: hidden;
         white-space: nowrap;
@@ -133,6 +135,7 @@
       }
       .expand-task {
         font-size: rem(13px);
+        margin-inline-start: auto;
         cursor: pointer;
         opacity: 0;
         display: flex;
