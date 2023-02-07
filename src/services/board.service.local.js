@@ -1,6 +1,7 @@
 import { storageService } from './async-storage.service.js'
 import { utilService } from './util.service.js'
 import { userService } from './user.service.js'
+import { isFunctionType } from '@vue/compiler-core'
 
 const STORAGE_KEY = 'board'
 
@@ -11,6 +12,7 @@ export const boardService = {
   remove,
   getEmptyBoard,
   addBoardMsg,
+  getDuplicatedTask,
 }
 window.cs = boardService
 
@@ -47,6 +49,13 @@ async function save(board) {
 }
 
 async function removeTasks(tasks) {}
+
+function getDuplicatedTask(task) {
+  const newTask = JSON.parse(JSON.stringify(task))
+  newTask.id = utilService.makeId()
+  newTask.title += ' (copy)'
+  return newTask
+}
 
 async function addBoardMsg(boardId, txt) {
   // Later, this is all done by the backend

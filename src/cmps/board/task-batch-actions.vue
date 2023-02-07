@@ -63,6 +63,8 @@ export default {
     methods: {
         duplicateTasks() {
             this.$emit('duplicate-tasks')
+            this.$store.dispatch({ type: 'duplicateTasks', tasks: this.selectedTasks })
+
         },
 
         exportFileExcel() {

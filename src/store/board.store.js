@@ -130,6 +130,22 @@ export const boardStore = {
         throw err
       }
     },
+    async duplicateTasks(context, { tasks }) {
+      try {
+        const newBoard = JSON.parse(JSON.stringify(context.state.board))
+        tasks.forEach((t) => {
+          const group = newBoard.groups.find((g) =>
+            g.tasks.find((task) => task.id === t.id)
+          )
+          const newTask = boardService.getDuplicatedTask(t)
+          group.tasks.push(newTask)
+        })
+        context.dispatch({ type: 'updateBoard', board: newBoard })
+      } catch (err) {
+        console.log('boardStore: Error in addBoardMsg', err)
+        throw err
+      }
+    },
     async removeTasks(context, { tasks }) {
       try {
         const newBoard = JSON.parse(JSON.stringify(context.state.board))
@@ -138,15 +154,7 @@ export const boardStore = {
             (t) => !tasks.find((selectedTask) => selectedTask.id === t.id)
           )
         })
-        console.log(
-          '🚀 ~ file: board.store.js:136 ~ removeTasks ~ newBoard',
-          newBoard.groups
-        )
-
         context.dispatch({ type: 'updateBoard', board: newBoard })
-
-        // const msg = await boardService.addBoardMsg(boardId, txt)
-        // context.commit({ type: 'addBoardMsg', boardId, msg })
       } catch (err) {
         console.log('boardStore: Error in addBoardMsg', err)
         throw err
