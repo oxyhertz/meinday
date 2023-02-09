@@ -128,10 +128,21 @@
         margin-inline-end: 9px;
       }
       .task-title {
+        @include title-text;
         text-overflow: ellipsis;
         overflow: hidden;
         white-space: nowrap;
+        padding: 0 2px;
+        height: 24px;
         max-width: 192px;
+        min-width: 32px;
+      }
+
+      input {
+        @include title-text-input;
+        height: 24px;
+        line-height: 22.4px;
+        font-size: 14px;
       }
       .expand-task {
         font-size: rem(13px);

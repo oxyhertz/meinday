@@ -1,8 +1,8 @@
 <template>
     <div class="task-name">
         <arrow-down :color="'#c3c6d4'" />
-        <p v-if="!isEditable" @click="isEditable = !isEditable" v-focus v-click-outside="() => isEditable = false"
-            class="task-title">{{ task.title }}</p>
+        <p v-if="!isEditable" @click="isEditable = !isEditable" class="task-title">{{ task.title }}</p>
+        <input type="text" v-else v-focus v-click-outside="() => isEditable = false" v-model="task.title">
         <div class="expand-task" v-tooltip="'Open item page'">
             <expand-icon />
             <span>Open</span>
@@ -27,7 +27,7 @@ export default {
     name: '',
     data() {
         return {
-            isEditing: false
+            isEditable: false
 
         }
     },
