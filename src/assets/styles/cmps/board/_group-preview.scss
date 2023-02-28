@@ -140,9 +140,13 @@
 
       input {
         @include title-text-input;
+        padding-inline-start: 2px;
+        // padding-block-start: 1px;
+        letter-spacing: 0.6px;
         height: 24px;
-        line-height: 22.4px;
-        font-size: 14px;
+        // line-height: 22.4px;
+        font-size: 0.8125rem;
+        border-radius: 4px;
       }
       .expand-task {
         font-size: rem(13px);
