@@ -3,8 +3,8 @@
         <h1 v-if="!isEditable" @click="isEditable = !isEditable" class="board-title single-line heading-text"
             v-tooltip="'Click to Edit'">{{ board.title }}</h1>
         <span class="title-input-container" v-else>
-            <input class="title-input heading-text" v-focus v-click-outside="() => isEditable = false" type="text"
-                name="" v-model="board.title">
+            <input class="title-input heading-text" v-focus v-click-outside="() => isEditable = false" type="text" name=""
+                v-model="board.title">
             <span class="emoji-picker-input">
                 <emoji-picker @selectEmoji="selectEmoji" />
             </span>
@@ -44,6 +44,7 @@ export default {
         },
         onToggleFavBoard() {
             const user = JSON.parse(JSON.stringify(this.$store.getters.loggedinUser));
+            if (!user.boards) user.boards = []
             if (this.isFavoriteBoard) {
                 user.boards.splice(user.boards.indexOf(this.board._id), 1)
             } else {
@@ -51,9 +52,6 @@ export default {
             }
 
             this.$store.dispatch({ type: "updateUser", user })
-
-            console.log('user', user.boards)
-            console.log("🚀 ~ file: board-name-heading.vue:42 ~ onToggleFavBoard ~ user", user)
 
         }
     },
@@ -75,6 +73,4 @@ export default {
     }
 }
 </script>
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>

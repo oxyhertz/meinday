@@ -9,6 +9,7 @@ import boardDetails from './cmps/board/board-details.vue'
 import reviewApp from './views/review-app.vue'
 import loginSignup from './views/login-signup.vue'
 import userDetails from './views/user-details.vue'
+import chatPulse from './cmps/board/chat-pulse/chat-pulse.vue'
 
 const routes = [
   {
@@ -40,6 +41,13 @@ const routes = [
         path: ':boardId',
         name: 'board-details',
         component: boardDetails,
+        children: [
+          {
+            path: 'pulse/:taskId',
+            name: 'chat-pulse',
+            component: chatPulse,
+          },
+        ],
       },
     ],
   },

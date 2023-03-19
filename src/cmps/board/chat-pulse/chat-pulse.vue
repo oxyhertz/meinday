@@ -1,23 +1,17 @@
 <template>
-    <section class="">
-        <h1>Boards Home</h1>
+    <section class="chat-pulse-container">
+        <h1>Chat pulse</h1>
         <QuillEditor theme="snow" v-model:content="content" contentType="html" @editorChange="onChange" />
         <div v-html="content"></div>
     </section>
 </template>
 <script>
 export default {
-    name: '',
+    name: 'chat-pulse',
     data() {
         return {
             content: ''
         }
-    },
-    created() {
-
-    },
-    mounted() {
-
     },
     methods: {
         onChange(info) {
@@ -26,11 +20,5 @@ export default {
         }
 
     },
-    computed: {
-
-    },
-    components: {
-
-    }
 }
 </script>

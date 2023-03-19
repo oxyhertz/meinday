@@ -5,6 +5,7 @@
             <board-name-heading />
             <group-list @updateGroups="updateBoard" :groups="board.groups" :board="board" />
         </main>
+        <router-view />
     </section>
 </template>
 <script>
