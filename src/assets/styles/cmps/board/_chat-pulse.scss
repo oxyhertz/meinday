@@ -9,4 +9,53 @@
   position: fixed;
   right: 0;
   top: 0;
+  padding: 22px 24px;
+  .pulse-menu-btn {
+    opacity: 1;
+  }
+
+  .heading {
+    display: flex;
+    align-items: center;
+    .task-title-input {
+      overflow: hidden;
+      overflow-wrap: break-word;
+      height: 26px;
+      margin: 0;
+      max-height: 88px;
+      outline: none;
+      background-color: #fff;
+      display: inline-block;
+      width: 100%;
+      min-width: 0;
+      padding: 0 4px;
+      outline: none;
+      border: 1px solid;
+      border-radius: 4px;
+      border-color: #0085ff;
+      vertical-align: top;
+      text-align: left;
+      &:focus {
+      }
+      &:hover {
+        border-color: #323338;
+      }
+    }
+    .task-title {
+      margin-inline-start: -8px;
+      flex: 1;
+      border: 1px solid rgba(0, 0, 0, 0);
+      border-radius: 4px;
+      padding-inline-start: 6px;
+      h2 {
+        padding: 3px 0;
+        font-size: 18px;
+        color: #323338;
+        font-family: $sub-text-font-family;
+      }
+      &:hover {
+        border-color: #c3c6d4;
+      }
+    }
+  }
 }

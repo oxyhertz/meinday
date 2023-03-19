@@ -1,5 +1,21 @@
 .group-preview {
   margin-block-end: 35px;
+
+  .pulse-menu-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    width: 21px;
+    height: 21px;
+    padding: 1px 1px;
+    border-radius: 4px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #d0d4e4;
+    }
+  }
   .group-title {
     margin-left: 4px;
     display: flex;

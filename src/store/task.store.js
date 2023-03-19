@@ -1,15 +1,22 @@
 export const taskStore = {
   state: {
     selectedTasks: [],
+    currentTask: null,
   },
   getters: {
     selectedTasks({ selectedTasks }) {
       return selectedTasks
     },
+    currentTask({ currentTask }) {
+      return currentTask
+    },
   },
   mutations: {
     setTask(state, { task }) {
       state.selectedTasks = [task, ...state.selectedTasks]
+    },
+    setCurrentTask(state, { task }) {
+      state.currentTask = task
     },
     setTasks(state, { tasks }) {
       //Check if duplicates
@@ -34,6 +41,20 @@ export const taskStore = {
     },
   },
   actions: {
+    async loadCurrentTask({ commit, rootState }, { taskId }) {
+      try {
+        console.log('taskId:', taskId)
+        console.log('rootState:', rootState)
+        const task = rootState.boardStore.board.groups
+          .flatMap((group) => group.tasks)
+          .find((task) => task.id === taskId)
+        commit({ type: 'setCurrentTask', task })
+        return task
+      } catch (err) {
+        console.log('taskStore: Error in loading task', err)
+        throw err
+      }
+    },
     async addSelectedTask({ commit }, { task }) {
       try {
         commit({ type: 'setTask', task })
