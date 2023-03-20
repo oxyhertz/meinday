@@ -1,14 +1,21 @@
 <template>
-    <section class="chat-pulse-container">
+    <section class="chat-pulse-container" v-if="task">
         <span>
             <i class="fa-solid fa-x"></i>
         </span>
         <section class="heading">
-            <div class="task-title" v-tooltip="'Click to edit heading'">
-                <h2>Task name</h2>
+            <div class="task-title" @click="isHeadingOnEdit = !isHeadingOnEdit" v-tooltip="'Click to edit heading'"
+                v-if="!isHeadingOnEdit">
+                <h2>{{ task.title }}</h2>
             </div>
-            <input class="task-title-input" type="text" v-if="isHeadingOnEdit">
-            <div class="task-members">Mem</div>
+            <input v-model="task.title" @input="upadteTask" v-focus class="task-title-input" type="text"
+                v-if="isHeadingOnEdit" v-click-outside="() => isHeadingOnEdit = false">
+            <div class="task-members">
+                <div class="member" v-for="member in task.members" :key="member._id">
+                    <img :src="member.imgUrl" alt="">
+                </div>`
+
+            </div>
             <div>
                 <pulse-menu-button />
             </div>
@@ -25,7 +32,7 @@ export default {
     data() {
         return {
             content: '',
-            isHeadingOnEdit: true,
+            isHeadingOnEdit: false,
             task: null
         }
     },
@@ -45,6 +52,9 @@ export default {
             console.log(this.content)
             console.log('info:', info);
         },
+        upadteTask() {
+            this.$store.dispatch({ type: "updateTask", task: this.task })
+        }
 
     },
     components: {

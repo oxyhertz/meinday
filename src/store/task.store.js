@@ -1,3 +1,5 @@
+import { boardService } from '../services/board.service.local'
+
 export const taskStore = {
   state: {
     selectedTasks: [],
@@ -41,15 +43,25 @@ export const taskStore = {
     },
   },
   actions: {
+    async updateTask({ commit, dispatch, rootState }, { task }) {
+      try {
+        commit({ type: 'setCurrentTask', task })
+        const boardId = rootState.boardStore.board._id
+        await boardService.updateTask(task, boardId)
+        // dispatch('boardStore/loadBoard', boardId, { root: true })
+        return task
+      } catch (err) {
+        console.log('userStore: Error in login', err)
+        throw err
+      }
+    },
     async loadCurrentTask({ commit, rootState }, { taskId }) {
       try {
-        console.log('taskId:', taskId)
-        console.log('rootState:', rootState)
         const task = rootState.boardStore.board.groups
           .flatMap((group) => group.tasks)
           .find((task) => task.id === taskId)
         commit({ type: 'setCurrentTask', task })
-        return task
+        return JSON.parse(JSON.stringify(task))
       } catch (err) {
         console.log('taskStore: Error in loading task', err)
         throw err

@@ -35,12 +35,10 @@ export default {
         }
     },
     created() {
-        console.log(this.loggedinUser)
     },
     methods: {
         selectEmoji(emoji) {
             console.log("🚀 ~ file: board-name-heading.vue:25 ~ selectEmoji ~ emoji", emoji)
-
         },
         onToggleFavBoard() {
             const user = JSON.parse(JSON.stringify(this.$store.getters.loggedinUser));

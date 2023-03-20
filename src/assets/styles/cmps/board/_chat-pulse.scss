@@ -21,7 +21,9 @@
       overflow: hidden;
       overflow-wrap: break-word;
       height: 26px;
-      margin: 0;
+      margin-inline-start: -8px;
+      padding-inline-start: 6px;
+
       max-height: 88px;
       outline: none;
       background-color: #fff;
@@ -35,8 +37,11 @@
       border-color: #0085ff;
       vertical-align: top;
       text-align: left;
-      &:focus {
-      }
+      font-weight: 600;
+      padding: 3px 0 3px 6px;
+      font-size: 18px;
+      color: #323338;
+      font-family: $sub-text-font-family;
       &:hover {
         border-color: #323338;
       }
@@ -47,6 +52,7 @@
       border: 1px solid rgba(0, 0, 0, 0);
       border-radius: 4px;
       padding-inline-start: 6px;
+      cursor: text;
       h2 {
         padding: 3px 0;
         font-size: 18px;

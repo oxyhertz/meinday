@@ -1,7 +1,6 @@
 import { storageService } from './async-storage.service.js'
 import { utilService } from './util.service.js'
 import { userService } from './user.service.js'
-import { isFunctionType } from '@vue/compiler-core'
 
 const STORAGE_KEY = 'board'
 
@@ -13,6 +12,7 @@ export const boardService = {
   getEmptyBoard,
   addBoardMsg,
   getDuplicatedTask,
+  updateTask,
 }
 window.cs = boardService
 
@@ -46,6 +46,20 @@ async function save(board) {
     savedBoard = await storageService.post(STORAGE_KEY, board)
   }
   return savedBoard
+}
+
+async function updateTask(task, boardId) {
+  const board = await getById(boardId)
+  const groupIdx = board.groups.findIndex((group) =>
+    group.tasks.some((currTask) => currTask.id === task.id)
+  )
+  const taskIdx = board.groups[groupIdx].tasks.findIndex(
+    (currTask) => currTask.id === task.id
+  )
+  console.log('board:', board)
+  board.groups[groupIdx].tasks.splice(taskIdx, 1, task)
+  await storageService.put(STORAGE_KEY, board)
+  return board
 }
 
 async function removeTasks(tasks) {}
