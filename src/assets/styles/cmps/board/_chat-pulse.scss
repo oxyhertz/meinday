@@ -121,7 +121,6 @@
   }
 
   .msg-container {
-    padding: 20px;
     border-radius: 8px;
     border: 1px solid;
     border-color: $layout-border-color;
@@ -138,6 +137,16 @@
     .relative-time {
       font-size: 14px;
       font-weight: 400;
+    }
+
+    footer button {
+      border-radius: 4px;
+      font-family: $sub-text-font-family;
+      color: $primary-text-color;
+
+      &:hover {
+        background-color: $primary-background-hover-color;
+      }
     }
   }
 }
