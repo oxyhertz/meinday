@@ -7,6 +7,7 @@ export const utilService = {
   saveToStorage,
   loadFromStorage,
   getRandomColor,
+  relativeTimeString,
 }
 
 function makeId(length = 6) {
@@ -110,4 +111,28 @@ function getRandomColor() {
   var b = parseInt(color.substring(5, 7), 16)
   var a = Math.round(255 * 0.5) // Set the desired level of darkness
   return 'rgba(' + r + ',' + g + ',' + b + ',' + a + ')'
+}
+
+function relativeTimeString(timestamp) {
+  const rtf = new Intl.RelativeTimeFormat('en', { numeric: 'auto' })
+  const now = Date.now()
+  const diff = now - timestamp
+
+  if (diff < 60 * 1000) {
+    const diffInSecs = Math.round(diff / 1000)
+    const formatted = rtf.format(-diffInSecs, 'second')
+    return formatted
+  } else if (diff < 60 * 60 * 1000) {
+    const diffInMins = Math.round(diff / (60 * 1000))
+    const formatted = rtf.format(-diffInMins, 'minute')
+    return formatted
+  } else if (diff < 24 * 60 * 60 * 1000) {
+    const diffInHours = Math.round(diff / (60 * 60 * 1000))
+    const formatted = rtf.format(-diffInHours, 'hour')
+    return formatted
+  } else {
+    const diffInDays = Math.round(diff / (24 * 60 * 60 * 1000))
+    const formatted = rtf.format(-diffInDays, 'day')
+    return formatted
+  }
 }

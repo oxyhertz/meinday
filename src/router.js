@@ -10,7 +10,7 @@ import reviewApp from './views/review-app.vue'
 import loginSignup from './views/login-signup.vue'
 import userDetails from './views/user-details.vue'
 import chatPulse from './cmps/board/chat-pulse/chat-pulse.vue'
-
+import playground from './views/playground.vue'
 const routes = [
   {
     path: '/',
@@ -26,6 +26,11 @@ const routes = [
     path: '/review',
     name: 'review',
     component: reviewApp,
+  },
+  {
+    path: '/playground',
+    name: 'playground',
+    component: playground,
   },
   {
     path: '/board',

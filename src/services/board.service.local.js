@@ -13,6 +13,7 @@ export const boardService = {
   addBoardMsg,
   getDuplicatedTask,
   updateTask,
+  getChatMsg,
 }
 window.cs = boardService
 
@@ -69,6 +70,28 @@ function getDuplicatedTask(task) {
   newTask.id = utilService.makeId()
   newTask.title += ' (copy)'
   return newTask
+}
+
+//  {
+//                 id: 'ZdPnm',
+//                 txt: 'also @yaronb please CR this',
+//                 createdAt: 1590999817436,
+//                 byMember: {
+//                   _id: 'u101',
+//                   fullname: 'Tal Tarablus',
+//                   imgUrl:
+//                     'http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg',
+//                 },
+//               },
+
+function getChatMsg(content) {
+  return {
+    id: utilService.makeId(),
+    byMember: userService.getLoggedinUser(),
+    likes: [],
+    createdAt: Date.now(),
+    content,
+  }
 }
 
 async function addBoardMsg(boardId, txt) {
@@ -155,7 +178,7 @@ function getEmptyBoard() {
             comments: [
               {
                 id: 'ZdPnm',
-                txt: 'also @yaronb please CR this',
+                content: 'also @yaronb please CR this',
                 createdAt: 1590999817436,
                 byMember: {
                   _id: 'u101',
@@ -199,7 +222,7 @@ function getEmptyBoard() {
     activities: [
       {
         id: 'a101',
-        txt: 'Changed Color',
+        content: 'Changed Color',
         createdAt: 154514,
         byMember: {
           _id: 'u101',
@@ -264,7 +287,7 @@ function getEmptyBoard() {
             comments: [
               {
                 id: 'ZdPnm',
-                txt: 'also @yaronb please CR this',
+                content: 'also @yaronb please CR this',
                 createdAt: 1590999817436,
                 byMember: {
                   _id: 'u101',
@@ -319,7 +342,7 @@ function getEmptyBoard() {
             comments: [
               {
                 id: 'ZdPnm',
-                txt: 'also @yaronb please CR this',
+                content: 'also @yaronb please CR this',
                 createdAt: 1590999817436,
                 byMember: {
                   _id: 'u101',
@@ -365,7 +388,7 @@ function getEmptyBoard() {
             comments: [
               {
                 id: 'ZdPnm',
-                txt: 'also @yaronb please CR this',
+                content: 'also @yaronb please CR this',
                 createdAt: 1590999817436,
                 byMember: {
                   _id: 'u101',

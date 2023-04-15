@@ -21,12 +21,21 @@
             </div>
         </section>
         <h1>Chat pulse</h1>
-        <QuillEditor theme="snow" v-model:content="content" contentType="html" @editorChange="onChange" />
+        <section class="quil-wrapper">
+            <QuillEditor :toolbar="['bold', 'italic', 'underline', { 'list': 'ordered' }, { 'list': 'bullet' }]"
+                theme="snow" v-model:content="content" contentType="html" @editorChange="onChange" />
+        </section>
+        <button class="update-msg" @click="addMessage">Update</button>
         <div v-html="content"></div>
+        <div class="messages-container">
+            <messsage-preview v-for="msg in task.comments" :key="msg.id" :msg="msg" />
+        </div>
     </section>
 </template>
 <script>
 import pulseMenuButton from '../../pulse-menu-button.vue';
+import { boardService } from '../../../services/board.service.local';
+import messsagePreview from './messsage-preview.vue';
 export default {
     name: 'chat-pulse',
     data() {
@@ -36,29 +45,43 @@ export default {
             task: null
         }
     },
-    async created() {
-        const taskId = this.$route.params.taskId
-        this.task = await this.$store.dispatch({ type: "loadCurrentTask", taskId })
-        console.log('this.task:', this.task);
 
+    watch: {
+        taskId: {
+            async handler() {
+                if (this.taskId) {
+                    this.task = await this.$store.dispatch({ type: "loadCurrentTask", taskId: this.taskId })
+                }
+            },
+            immediate: true,
+        },
     },
     computed: {
-        // taskId() {
-        //     return this.$route.params.taskId
-        // },
+        taskId() {
+            return this.$route.params.taskId
+        },
     },
     methods: {
         onChange(info) {
             console.log(this.content)
-            console.log('info:', info);
+        },
+        addMessage() {
+            const taskCopy = JSON.parse(JSON.stringify(this.task))
+            const msg = boardService.getChatMsg(this.content)
+            taskCopy.comments.unshift(msg)
+            this.task = taskCopy
+            this.upadteTask()
+            this.content = ''
         },
         upadteTask() {
             this.$store.dispatch({ type: "updateTask", task: this.task })
-        }
+        },
+
 
     },
     components: {
-        pulseMenuButton
+        pulseMenuButton, messsagePreview
+
     }
 }
 </script>

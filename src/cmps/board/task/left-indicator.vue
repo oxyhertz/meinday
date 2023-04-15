@@ -1,6 +1,6 @@
 <template>
-    <div class="left-indicator" :class="{'top-left-radius':isTop}"
-        :style="{ 'border-color': color, 'background-color': color }">
+    <div class="left-indicator" :class="{ 'top-left-radius': isTop }"
+        :style="{ 'border-color': color, 'background-color': color || 'yellow' }">
 
     </div>
 </template>
