@@ -49,6 +49,7 @@ export default {
 <style scoped>
 .msg-container {
     padding: 10px;
+    margin-block-end: 16px;
 }
 
 .msg-header {
@@ -56,6 +57,7 @@ export default {
     justify-content: center;
     align-items: center;
     gap: 15px;
+    margin-block-end: 16px;
 }
 
 .user-avatar img {
@@ -66,6 +68,9 @@ export default {
     margin-right: 10px;
     object-fit: cover;
 }
+
+
+
 
 .extra-info {
     display: flex;
@@ -83,5 +88,9 @@ export default {
 
 .user-fullname {
     font-weight: 400;
+}
+
+.msg-content {
+    font-size: 16px;
 }
 </style>

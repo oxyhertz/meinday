@@ -22,8 +22,9 @@
         </section>
         <h1>Chat pulse</h1>
         <section class="quil-wrapper">
-            <QuillEditor :toolbar="['bold', 'italic', 'underline', { 'list': 'ordered' }, { 'list': 'bullet' }]"
-                theme="snow" v-model:content="content" contentType="html" @editorChange="onChange" />
+            <QuillEditor ref="editor"
+                :toolbar="['bold', 'italic', 'underline', { 'list': 'ordered' }, { 'list': 'bullet' }]" theme="snow"
+                v-model:content="content" contentType="html" @editorChange="onChange" />
         </section>
         <button class="update-msg" @click="addMessage">Update</button>
         <div v-html="content"></div>
@@ -72,6 +73,8 @@ export default {
             this.task = taskCopy
             this.upadteTask()
             this.content = ''
+            // Plaster to reset contenteditable div
+            document.querySelector('.ql-editor').innerHTML = ''
         },
         upadteTask() {
             this.$store.dispatch({ type: "updateTask", task: this.task })
