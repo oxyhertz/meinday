@@ -1,7 +1,7 @@
 <template>
     <section class="chat-pulse-container" v-if="task">
         <span>
-            <i class="fa-solid fa-x"></i>
+            <i class="fa-solid fa-x" @click="goBack()"></i>
         </span>
         <section class="heading">
             <div class="task-title" @click="isHeadingOnEdit = !isHeadingOnEdit" v-tooltip="'Click to edit heading'"
@@ -22,7 +22,7 @@
         </section>
         <h1>Chat pulse</h1>
         <section class="quil-wrapper">
-            <QuillEditor ref="editor"
+            <QuillEditor placeholder="Write an update..." ref="editor"
                 :toolbar="['bold', 'italic', 'underline', { 'list': 'ordered' }, { 'list': 'bullet' }]" theme="snow"
                 v-model:content="content" contentType="html" @editorChange="onChange" />
         </section>
@@ -77,9 +77,12 @@ export default {
             document.querySelector('.ql-editor').innerHTML = ''
         },
         upadteTask() {
-            this.$store.dispatch({ type: "updateTask", task: this.task })
+            this.$store.dispatch({ type: "updateTask", task: JSON.parse(JSON.stringify(this.task)) })
         },
 
+        goBack() {
+            this.$router.push(`/board/${this.$route.params.boardId}`)
+        }
 
     },
     components: {
@@ -88,3 +91,9 @@ export default {
     }
 }
 </script>
+<style scoped>
+.fa-x {
+    cursor: pointer;
+    color: #4b4b4b;
+}
+</style>
