@@ -50,15 +50,17 @@
                 eveniet vitae quam dolore laborum sit dolorum exercitationem nostrum. Error tenetur dolorum, expedita
                 laborum voluptates nemo ipsum laudantium corrupti praesentium.
             </template>
-    </VDropdown>
-</section></template>
+        </VDropdown>
+    </section>
+</template>
 <script>
 export default {
     name: 'dynamic-modal'
 }
 </script>
 
-<style >.v-popper--theme-dropdown .v-popper__inner {
+<style >
+.v-popper--theme-dropdown .v-popper__inner {
     background: black;
 }
 
@@ -80,4 +82,5 @@ export default {
 
 button.trigger {
     display: inline-block;
-}</style>
+}
+</style>

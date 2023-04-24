@@ -19,20 +19,18 @@
   .heading {
     display: flex;
     align-items: center;
+    margin-block-end: 25px;
     .task-title-input {
       overflow: hidden;
       overflow-wrap: break-word;
-      height: 26px;
-      margin-inline-start: -8px;
-      padding-inline-start: 6px;
-
+      // height: 30px;
+      padding: 0 2px;
       max-height: 88px;
       outline: none;
       background-color: #fff;
       display: inline-block;
       width: 100%;
       min-width: 0;
-      padding: 0 4px;
       outline: none;
       border: 1px solid;
       border-radius: 4px;
@@ -40,8 +38,8 @@
       vertical-align: top;
       text-align: left;
       font-weight: 600;
-      padding: 3px 0 3px 6px;
-      font-size: 18px;
+      font-size: 24px;
+      line-height: 1;
       color: #323338;
       font-family: $sub-text-font-family;
       &:hover {
@@ -49,15 +47,14 @@
       }
     }
     .task-title {
-      margin-inline-start: -8px;
       flex: 1;
       border: 1px solid rgba(0, 0, 0, 0);
       border-radius: 4px;
-      padding-inline-start: 6px;
       cursor: text;
       h2 {
-        padding: 3px 0;
-        font-size: 18px;
+        line-height: 1;
+        padding: 3px 0 2px 2px;
+        font-size: 24px;
         color: #323338;
         font-family: $sub-text-font-family;
       }
@@ -148,5 +145,9 @@
         background-color: $primary-background-hover-color;
       }
     }
+  }
+
+  .messages-container {
+    margin-block-start: 25px;
   }
 }

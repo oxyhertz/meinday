@@ -1,6 +1,6 @@
 <template>
     <section class="chat-pulse-container" v-if="task">
-        <span>
+        <span class="close-icon">
             <i class="fa-solid fa-x" @click="goBack()"></i>
         </span>
         <section class="heading">
@@ -13,14 +13,17 @@
             <div class="task-members">
                 <div class="member" v-for="member in task.members" :key="member._id">
                     <img :src="member.imgUrl" alt="">
-                </div>`
+                </div>
 
             </div>
             <div>
-                <pulse-menu-button />
+                <sub-popup>
+                    <template v-slot:button>
+                        <pulse-menu-button />
+                    </template>
+                </sub-popup>
             </div>
         </section>
-        <h1>Chat pulse</h1>
         <section class="quil-wrapper">
             <QuillEditor placeholder="Write an update..." ref="editor"
                 :toolbar="['bold', 'italic', 'underline', { 'list': 'ordered' }, { 'list': 'bullet' }]" theme="snow"
@@ -37,6 +40,7 @@
 import pulseMenuButton from '../../pulse-menu-button.vue';
 import { boardService } from '../../../services/board.service.local';
 import messsagePreview from './messsage-preview.vue';
+import subPopup from '../../popups/sub-popper.vue';
 export default {
     name: 'chat-pulse',
     data() {
@@ -86,7 +90,7 @@ export default {
 
     },
     components: {
-        pulseMenuButton, messsagePreview
+        pulseMenuButton, messsagePreview, subPopup
 
     }
 }
@@ -95,5 +99,9 @@ export default {
 .fa-x {
     cursor: pointer;
     color: #4b4b4b;
+}
+
+.close-icon {
+    margin-inline-start: 4px;
 }
 </style>

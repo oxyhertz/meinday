@@ -13,7 +13,14 @@ import 'floating-vue/dist/style.css'
 const app = createApp(rootCmp)
 app.use(router)
 app.use(store)
-app.use(FloatingVue)
+app.use(FloatingVue, {
+  themes: {
+    'sub-popper': {
+      $extend: 'dropdown',
+      // Other options (see the 'Global options' section)
+    },
+  },
+})
 app.component('Popper', Popper)
 app.component('QuillEditor', QuillEditor)
 app.directive('click-outside', clickOutsideDirective)
