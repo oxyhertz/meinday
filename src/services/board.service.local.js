@@ -201,7 +201,29 @@ function getEmptyBoard() {
                 ],
               },
             ],
-            memberIds: ['u101'],
+
+            members: [
+              [
+                {
+                  _id: 'u102',
+                  fullname: 'Avery Lee',
+                  imgUrl:
+                    'http://res.cloudinary.com/averylee/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg',
+                },
+                {
+                  _id: 'u103',
+                  fullname: 'Samantha Johnson',
+                  imgUrl:
+                    'http://res.cloudinary.com/samanthaj/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg',
+                },
+                {
+                  _id: 'u104',
+                  fullname: 'Juan Rodriguez',
+                  imgUrl:
+                    'http://res.cloudinary.com/jrodriguez/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg',
+                },
+              ],
+            ],
             labelIds: ['l101', 'l102'],
             dueDate: 16156215211,
             byMember: {
@@ -235,8 +257,7 @@ function getEmptyBoard() {
         },
       },
     ],
-
-    cmpsOrder: ['status-picker', 'member-picker', 'date-picker'],
+    cmpsOrder: ['status', 'members', 'date', 'priority'],
   }
 }
 
@@ -267,9 +288,19 @@ function getEmptyBoard() {
     ],
     members: [
       {
-        _id: 'u101',
-        fullname: 'Tal Tarablus',
-        imgUrl: 'https://www.google.com',
+        _id: 'u102',
+        fullname: 'Avery Lee',
+        imgUrl: 'https://randomuser.me/api/portraits/women/68.jpg',
+      },
+      {
+        _id: 'u103',
+        fullname: 'Samantha Johnson',
+        imgUrl: 'https://randomuser.me/api/portraits/men/68.jpg',
+      },
+      {
+        _id: 'u104',
+        fullname: 'Juan Rodriguez',
+        imgUrl: 'https://randomuser.me/api/portraits/women/25.jpg',
       },
     ],
     groups: [
@@ -310,7 +341,23 @@ function getEmptyBoard() {
                 ],
               },
             ],
-            memberIds: ['u101'],
+            members: [
+              {
+                _id: 'u102',
+                fullname: 'Avery Lee',
+                imgUrl: 'https://randomuser.me/api/portraits/women/68.jpg',
+              },
+              {
+                _id: 'u103',
+                fullname: 'Samantha Johnson',
+                imgUrl: 'https://randomuser.me/api/portraits/men/68.jpg',
+              },
+              // {
+              //   _id: 'u104',
+              //   fullname: 'Juan Rodriguez',
+              //   imgUrl: 'https://randomuser.me/api/portraits/women/25.jpg',
+              // },
+            ],
             labelIds: ['l101', 'l102'],
             dueDate: 16156215211,
             byMember: {
@@ -365,7 +412,23 @@ function getEmptyBoard() {
                 ],
               },
             ],
-            memberIds: ['u101'],
+            members: [
+              {
+                _id: 'u102',
+                fullname: 'Avery Lee',
+                imgUrl: 'https://randomuser.me/api/portraits/women/68.jpg',
+              },
+              {
+                _id: 'u103',
+                fullname: 'Samantha Johnson',
+                imgUrl: 'https://randomuser.me/api/portraits/men/68.jpg',
+              },
+              // {
+              //   _id: 'u104',
+              //   fullname: 'Juan Rodriguez',
+              //   imgUrl: 'https://randomuser.me/api/portraits/women/25.jpg',
+              // },
+            ],
             labelIds: ['l101', 'l102'],
             dueDate: 16156215211,
             byMember: {
@@ -411,7 +474,23 @@ function getEmptyBoard() {
                 ],
               },
             ],
-            memberIds: ['u101'],
+            members: [
+              {
+                _id: 'u102',
+                fullname: 'Avery Lee',
+                imgUrl: 'https://randomuser.me/api/portraits/women/68.jpg',
+              },
+              {
+                _id: 'u103',
+                fullname: 'Samantha Johnson',
+                imgUrl: 'https://randomuser.me/api/portraits/men/68.jpg',
+              },
+              // {
+              //   _id: 'u104',
+              //   fullname: 'Juan Rodriguez',
+              //   imgUrl: 'https://randomuser.me/api/portraits/women/25.jpg',
+              // },
+            ],
             labelIds: ['l101', 'l102'],
             dueDate: 16156215211,
             byMember: {

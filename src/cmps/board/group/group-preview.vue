@@ -3,7 +3,6 @@
         <section class="group-title">
             <pulse-menu-button />
             <div class="arrow-down">
-
                 <arrow-down :color="group.style?.color" />
             </div>
             <h4 v-tooltip.top-center="'Click to edit'" v-if="!isTitleEdit" :style="{ color: group.style?.color }"
@@ -51,7 +50,7 @@
                         <task-title :task="task" />
                     </section>
                     <section class="grid-item" v-for="(cmp, idx) in cmpsOrder" :key="cmp">
-                        <component :is="cmp" :task="task"></component>
+                        <component @updateTask="updateTask" :is="cmp" :task="task"></component>
                     </section>
                 </section>
             </Draggable>
@@ -94,6 +93,10 @@ export default {
         this.cmpsOrder = [...this.board.cmpsOrder]
     },
     methods: {
+        updateTask(payload) {
+            this.$store.dispatch({ type: "updateTask", task: payload.task })
+            this.$store.commit({ type: "upadateTask", task: payload.task })
+        },
         onDrop(dropResult) {
             this.cmpsOrder = dndService.applyDrag(this.cmpsOrder, dropResult);
             const newBoard = JSON.parse(JSON.stringify(this.board))

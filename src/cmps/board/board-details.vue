@@ -3,9 +3,9 @@
         <workspace-menu />
         <main>
             <board-name-heading />
-            <group-list @updateGroups="updateBoard" :groups="board.groups" :board="board" />
+            <!-- <group-list @updateGroups="updateBoard" :groups="board.groups" :board="board" /> -->
+            <router-view @updateGroups="updateBoard" :groups="board.groups" :board="board" />
         </main>
-        <router-view />
     </section>
 </template>
 <script>

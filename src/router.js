@@ -11,6 +11,7 @@ import loginSignup from './views/login-signup.vue'
 import userDetails from './views/user-details.vue'
 import chatPulse from './cmps/board/chat-pulse/chat-pulse.vue'
 import playground from './views/playground.vue'
+import groupList from './cmps/board/group/group-list.vue'
 const routes = [
   {
     path: '/',
@@ -47,6 +48,11 @@ const routes = [
         name: 'board-details',
         component: boardDetails,
         children: [
+          {
+            path: '',
+            name: 'boards-monday-list',
+            component: groupList,
+          },
           {
             path: 'pulse/:taskId',
             name: 'chat-pulse',

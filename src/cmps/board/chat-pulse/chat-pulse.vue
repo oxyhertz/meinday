@@ -10,17 +10,17 @@
             </div>
             <input v-model="task.title" @input="upadteTask" v-focus class="task-title-input" type="text"
                 v-if="isHeadingOnEdit" v-click-outside="() => isHeadingOnEdit = false">
-            <div class="task-members">
+            <!-- <div class="task-members">
                 <div class="member" v-for="member in task.members" :key="member._id">
                     <img :src="member.imgUrl" alt="">
                 </div>
-
-            </div>
+            </div> -->
             <div>
                 <sub-popup>
                     <template v-slot:button>
                         <pulse-menu-button />
                     </template>
+                    <h2>kurwa</h2>
                 </sub-popup>
             </div>
         </section>

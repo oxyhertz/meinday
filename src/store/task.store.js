@@ -48,7 +48,6 @@ export const taskStore = {
         commit({ type: 'setCurrentTask', task })
         const boardId = rootState.boardStore.board._id
         await boardService.updateTask(task, boardId)
-        // dispatch('boardStore/loadBoard', boardId, { root: true })
         return task
       } catch (err) {
         console.log('userStore: Error in login', err)

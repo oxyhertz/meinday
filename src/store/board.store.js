@@ -63,6 +63,14 @@ export const boardStore = {
       if (!board.msgs) board.msgs = []
       board.msgs.push(msg)
     },
+    upadateTask(state, { task }) {
+      const group = state.board.groups.find((group) =>
+        group.tasks.some((t) => t.id === task.id)
+      )
+      const idx = group.tasks.findIndex((t) => t.id === task.id)
+      group.tasks.splice(idx, 1, task)
+      state.board = { ...state.board }
+    },
   },
   actions: {
     async addBoard(context, { board }) {

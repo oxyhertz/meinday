@@ -21,6 +21,7 @@ app.use(FloatingVue, {
     },
   },
 })
+
 app.component('Popper', Popper)
 app.component('QuillEditor', QuillEditor)
 app.directive('click-outside', clickOutsideDirective)
