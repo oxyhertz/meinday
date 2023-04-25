@@ -6,6 +6,7 @@
             </Draggable>
         </Container>
         <task-batch-actions />
+        <RouterView />
     </section>
 </template>
 <script>

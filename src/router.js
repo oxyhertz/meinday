@@ -52,12 +52,19 @@ const routes = [
             path: '',
             name: 'boards-monday-list',
             component: groupList,
+            children: [
+              {
+                path: 'pulse/:taskId',
+                name: 'chat-pulse',
+                component: chatPulse,
+              },
+            ],
           },
-          {
-            path: 'pulse/:taskId',
-            name: 'chat-pulse',
-            component: chatPulse,
-          },
+          // {
+          //   path: 'pulse/:taskId',
+          //   name: 'chat-pulse',
+          //   component: chatPulse,
+          // },
         ],
       },
     ],
