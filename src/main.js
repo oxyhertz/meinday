@@ -19,6 +19,10 @@ app.use(FloatingVue, {
       $extend: 'dropdown',
       // Other options (see the 'Global options' section)
     },
+    'color-picker': {
+      $extend: 'dropdown',
+      // Other options (see the 'Global options' section)
+    },
   },
 })
 

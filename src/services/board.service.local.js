@@ -274,6 +274,17 @@ function getEmptyBoard() {
       imgUrl: 'http://some-img',
     },
     style: {},
+    priorityLabels: [],
+    statusLabels: [
+      { id: 1, title: 'Working on it', color: 'rgb(253, 171, 61)' },
+      { id: 2, title: 'Stuck', color: 'rgb(226, 68, 92)' },
+      { id: 3, title: 'Done', color: 'rgb(0, 200, 117)' },
+      {
+        id: 4,
+        title: '',
+        color: 'rgb(196, 196, 196)',
+      },
+    ],
     labels: [
       {
         id: 'l101',
