@@ -59,9 +59,6 @@ export default {
             coppyLabels: []
         }
     },
-    created() {
-        console.log('activeLabels', this.activeLabels)
-    },
     watch: {
         labels: {
             immediate: true,
@@ -115,11 +112,11 @@ export default {
     }
 }
 
+// ⚠️️
 .label-picker {
     padding: 16px 24px 8px;
     font-family: Figtree, Roboto, Rubik, Noto Kufi Arabic, Noto Sans JP;
 
-    .selected-label {}
 
     .label-edit {
         display: flex;

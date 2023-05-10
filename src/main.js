@@ -10,6 +10,8 @@ import 'vue3-emoji-picker/css'
 import './assets/styles/main.scss'
 import rootCmp from './root-cmp.vue'
 import 'floating-vue/dist/style.css'
+import VueDatePicker from '@vuepic/vue-datepicker'
+import '@vuepic/vue-datepicker/dist/main.css'
 const app = createApp(rootCmp)
 app.use(router)
 app.use(store)
@@ -28,6 +30,7 @@ app.use(FloatingVue, {
 
 app.component('Popper', Popper)
 app.component('QuillEditor', QuillEditor)
+app.component('VueDatePicker', VueDatePicker)
 app.directive('click-outside', clickOutsideDirective)
 app.directive('focus', focusDirective)
 app.mount('#app')

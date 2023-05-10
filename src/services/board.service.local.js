@@ -172,13 +172,15 @@ function getEmptyBoard() {
           {
             id: 'c104',
             title: 'Help me',
+            date: 1590999817436,
+
             status: {
               id: 1,
               title: 'Working on it',
               color: 'rgb(253, 171, 61)',
             },
 
-            priority: 'high',
+            priority: { id: 1, title: 'High', color: 'rgb(64, 22, 148)' },
             description: 'description',
             comments: [
               {
@@ -287,7 +289,12 @@ function getEmptyLabel() {
       imgUrl: 'http://some-img',
     },
     style: {},
-    priorityLabels: [],
+    priorityLabels: [
+      { id: 1, title: 'High', color: 'rgb(64, 22, 148)' },
+      { id: 2, title: 'Medium', color: 'rgb(85, 89, 223)' },
+      { id: 3, title: 'Low', color: 'rgb(87, 155, 252)' },
+      { id: 4, title: 'Critical ⚠️️', color: '#323338' },
+    ],
     statusLabels: [
       { id: 1, title: 'Working on it', color: 'rgb(253, 171, 61)' },
       { id: 2, title: 'Stuck', color: 'rgb(226, 68, 92)' },
@@ -332,12 +339,14 @@ function getEmptyLabel() {
           {
             id: 'c122204',
             title: 'Help me',
+            date: 1590999817436,
+
             status: {
               id: 1,
               title: 'Working on it',
               color: 'rgb(253, 171, 61)',
             }, // monday
-            priority: 'high',
+            priority: { id: 1, title: 'High', color: 'rgb(64, 22, 148)' },
             description: 'description',
             comments: [
               {
@@ -407,13 +416,14 @@ function getEmptyLabel() {
           {
             id: 'c104',
             title: 'Help me',
+            date: 1590999817436,
             status: {
               id: 1,
               title: 'Working on it',
               color: 'rgb(253, 171, 61)',
             },
 
-            priority: 'high',
+            priority: { id: 1, title: 'High', color: 'rgb(64, 22, 148)' },
             description: 'description',
             comments: [
               {
@@ -474,13 +484,15 @@ function getEmptyLabel() {
           {
             id: 'c1024',
             title: 'Help me',
+            date: 1590999817436,
+
             status: {
               id: 1,
               title: 'Working on it',
               color: 'rgb(253, 171, 61)',
             },
 
-            priority: 'high',
+            priority: { id: 1, title: 'High', color: 'rgb(64, 22, 148)' },
             description: 'description',
             comments: [
               {

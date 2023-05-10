@@ -1,13 +1,14 @@
 <template>
     <section class="status-container" @click="isOpen = !isOpen" :style="{ 'background-color': status.color }">
-        <span class="status-title">{{ status.title }}</span>
         <VDropdown :distance="17" :triggers="[]" :shown="isOpen">
+            <span class="status-title">{{ status.title }}</span>
             <template #popper>
                 <label-picker :activeLabels="activeLabels" @deleteLabel="deleteLabel" @addNewLabel="addNewLabel"
                     :task="task" @updateLabels="updateLabels" @selectLabel="updateTaskStatus" @selectColor="selectColor"
-                    :labels="board.statusLabels" />
+                    :labels="boardLabels" />
             </template>
         </VDropdown>
+        <div class="edge-triangle"></div>
     </section>
 </template>
 <script>
@@ -19,43 +20,60 @@ export default {
         task: {
             type: Object,
             required: true
+        },
+        cmpType: {
+            type: String,
+            // required: true
+            default: 'status'
         }
+    },
+    created() {
+
     },
     data() {
         return {
-            isOpen: false
+            isOpen: false,
+
         }
     },
     // computed that get the board from store
     computed: {
         // get the board from store
+        boardLabels() {
+            if (this.cmpType === 'status') return this.board.statusLabels;
+            else if (this.cmpType === 'priority') return this.board.priorityLabels;
+        },
         board() {
             return this.$store.getters.board;
         },
         status() {
             // console.log(';this,board', this.board.statusLabels)
-            const labelToDisplay = this.board.statusLabels.find(label => label.id === this.task.status.id)
+            const labelToDisplay = this.boardLabels.find(label => label.id === this.task[this.cmpType].id)
             return labelToDisplay;
         },
         activeLabels() {
-            // task.status.id
+            // task[this.cmpType].id
             const tasks = this.board.groups.reduce((acc, group) => [...acc, ...group.tasks], [])
-            return this.board.statusLabels.filter(label => tasks.some(task => task.status.id === label.id))
+            return this.boardLabels.filter(label => tasks.some(task => task[this.cmpType].id === label.id))
+        },
+        dataType() {
+            return this.cmpType === 'status' ? 'statusLabels' : 'priorityLabels';
         }
     },
     methods: {
         addNewLabel() {
             const newLabel = boardService.getEmptyLabel();
-            this.updateLabels([...this.board.statusLabels, newLabel])
+            this.updateLabels([...this.boardLabels, newLabel])
         },
         deleteLabel(label) {
-            const labels = this.board.statusLabels.filter(currLabel => currLabel.id !== label.id)
+            const labels = this.boardLabels.filter(currLabel => currLabel.id !== label.id)
             this.updateLabels(labels)
         },
         // update the task status,
         updateLabels(labels, label) {
             const boardCopy = JSON.parse(JSON.stringify(this.board))
-            boardCopy.statusLabels = [...labels];
+
+            boardCopy[this.dataType] = [...labels];
             this.$store.dispatch({ type: 'updateBoard', board: boardCopy });
 
         },
@@ -63,7 +81,7 @@ export default {
         updateTaskStatus(label) {
             const boardCopy = JSON.parse(JSON.stringify(this.board))
             const copyTask = { ...this.task };
-            copyTask.status = label;
+            copyTask[this.cmpType] = label;
             const groupIdx = boardCopy.groups.findIndex((group) =>
                 group.tasks.some((currTask) => currTask.id === copyTask.id)
             )
@@ -78,7 +96,7 @@ export default {
             const labelCopy = { ...label }
             labelCopy.color = color;
             const boardCopy = { ...this.board }
-            boardCopy.statusLabels = boardCopy.statusLabels.map(currLabel => {
+            boardCopy[this.dataType] = this.boardLabels.map(currLabel => {
                 if (currLabel.id === labelCopy.id) return labelCopy;
                 return currLabel;
             })
@@ -97,5 +115,23 @@ export default {
     align-items: center;
     justify-content: center;
     color: white;
+    position: relative;
+
+    .edge-triangle {
+        transition: border-width .3s .2s ease;
+        position: absolute;
+        top: 0;
+        right: 0;
+        border-style: solid;
+        border-color: rgba(0, 0, 0, .2) #ffffff;
+        border-width: 0;
+    }
+
+    &:hover {
+        .edge-triangle {
+            border-width: 0 10px 10px 0;
+        }
+    }
+
 }
 </style>
