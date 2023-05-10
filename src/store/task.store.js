@@ -43,14 +43,17 @@ export const taskStore = {
     },
   },
   actions: {
-    async updateTask({ commit, dispatch, rootState }, { task }) {
+    async updateTask(
+      { commit, dispatch, rootState },
+      { task, isSetCurrTask = true }
+    ) {
       try {
-        commit({ type: 'setCurrentTask', task })
+        if (isSetCurrTask) commit({ type: 'setCurrentTask', task })
         const boardId = rootState.boardStore.board._id
         await boardService.updateTask(task, boardId)
         return task
       } catch (err) {
-        console.log('userStore: Error in login', err)
+        console.log('taskSTore: Error ', err)
         throw err
       }
     },

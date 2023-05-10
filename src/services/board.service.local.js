@@ -14,6 +14,7 @@ export const boardService = {
   getDuplicatedTask,
   updateTask,
   getChatMsg,
+  getEmptyLabel,
 }
 window.cs = boardService
 
@@ -57,7 +58,6 @@ async function updateTask(task, boardId) {
   const taskIdx = board.groups[groupIdx].tasks.findIndex(
     (currTask) => currTask.id === task.id
   )
-  console.log('board:', board)
   board.groups[groupIdx].tasks.splice(taskIdx, 1, task)
   await storageService.put(STORAGE_KEY, board)
   return board
@@ -172,7 +172,12 @@ function getEmptyBoard() {
           {
             id: 'c104',
             title: 'Help me',
-            status: 'in-progress', // monday
+            status: {
+              id: 1,
+              title: 'Working on it',
+              color: 'rgb(253, 171, 61)',
+            },
+
             priority: 'high',
             description: 'description',
             comments: [
@@ -261,6 +266,14 @@ function getEmptyBoard() {
   }
 }
 
+function getEmptyLabel() {
+  return {
+    id: utilService.makeId(),
+    title: '',
+    color: utilService.getRandomColor(),
+  }
+}
+
 // TEST DATA
 ;(async () => {
   await storageService.post(STORAGE_KEY, {
@@ -279,11 +292,7 @@ function getEmptyBoard() {
       { id: 1, title: 'Working on it', color: 'rgb(253, 171, 61)' },
       { id: 2, title: 'Stuck', color: 'rgb(226, 68, 92)' },
       { id: 3, title: 'Done', color: 'rgb(0, 200, 117)' },
-      {
-        id: 4,
-        title: '',
-        color: 'rgb(196, 196, 196)',
-      },
+      { id: 4, title: '', color: 'rgb(196, 196, 196)' },
     ],
     labels: [
       {
@@ -323,7 +332,11 @@ function getEmptyBoard() {
           {
             id: 'c122204',
             title: 'Help me',
-            status: 'in-progress', // monday
+            status: {
+              id: 1,
+              title: 'Working on it',
+              color: 'rgb(253, 171, 61)',
+            }, // monday
             priority: 'high',
             description: 'description',
             comments: [
@@ -394,7 +407,12 @@ function getEmptyBoard() {
           {
             id: 'c104',
             title: 'Help me',
-            status: 'in-progress', // monday
+            status: {
+              id: 1,
+              title: 'Working on it',
+              color: 'rgb(253, 171, 61)',
+            },
+
             priority: 'high',
             description: 'description',
             comments: [
@@ -456,7 +474,12 @@ function getEmptyBoard() {
           {
             id: 'c1024',
             title: 'Help me',
-            status: 'in-progress', // monday
+            status: {
+              id: 1,
+              title: 'Working on it',
+              color: 'rgb(253, 171, 61)',
+            },
+
             priority: 'high',
             description: 'description',
             comments: [

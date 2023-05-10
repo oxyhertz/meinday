@@ -1,13 +1,13 @@
 <template>
     <section class="label-picker">
         <div v-if="!isEditLabel">
-            <div class="label" @click="selectLabel(label)" v-for="label in labels" :key="label.id"
-                :style="{ 'background-color': label.color }">
+            <div class="label" :class="{ 'selected-label': task.status === label.title }" @click="selectLabel(label)"
+                v-for="label in coppyLabels" :key="label.id" :style="{ 'background-color': label.color }">
                 {{ label.title }}
             </div>
         </div>
         <div v-else>
-            <div class="label-edit" v-for="label in labels" :key="label.id">
+            <div class="label-edit" v-for="label in coppyLabels" :key="label.id">
                 <VDropdown :skidding="65" theme="color-picker">
                     <span :style="{ 'background-color': label.color }" @click="colorPickerActiveLabel = label.id">
                         <color-pour />
@@ -16,8 +16,13 @@
                         <color-picker @selected-color="(c) => onColorSelect(c, label)" />
                     </template>
                 </VDropdown>
-                <input type="text" v-model="label.title" />
+                <input placeholder="Add Label" type="text" @change="$emit('updateLabels', coppyLabels, label)"
+                    v-model="label.title" />
+                <delete-icon class="delete-icon" :class="{ 'unactive-label': !isActiveLabel(label) }"
+                    v-tooltip="isActiveLabel(label) ? `You can't delete a label while in use` : 'Delete label'"
+                    @click="deleteLabel(label)" />
             </div>
+            <button class="new-label" @click="$emit('add-new-label')">+ New label</button>
         </div>
         <divider />
         <button @click="isEditLabel = !isEditLabel">
@@ -30,23 +35,39 @@
 import divider from '../../../divider.vue';
 import colorPour from '../../../icons/color-pour.vue';
 import editIcon from '../../../icons/edit-icon.vue';
+import deleteIcon from '../../../icons/delete-icon.vue';
 import colorPicker from '../../../color-picker.vue';
 export default {
     name: 'label-picker',
     props: {
         labels: {
             type: Array,
-            required: true,
-            default: () => [
-
-            ],
+            default: () => [],
         },
+        task: {
+            type: Object,
+        },
+        activeLabels: {
+            type: Array
+        }
         // 'Working on it', 'Stuck', 'Done'
     },
     data() {
         return {
             isEditLabel: false,
-            colorPickerActiveLabel: false
+            colorPickerActiveLabel: false,
+            coppyLabels: []
+        }
+    },
+    created() {
+        console.log('activeLabels', this.activeLabels)
+    },
+    watch: {
+        labels: {
+            immediate: true,
+            handler() {
+                this.coppyLabels = JSON.parse(JSON.stringify(this.labels))
+            }
         }
     },
     methods: {
@@ -55,9 +76,15 @@ export default {
         },
         onColorSelect(color, label) {
             this.$emit('selectColor', color, label)
-            console.log("🚀 ~ file: label-picker.vue:64 ~ onColorSelect ~ label:", label)
-            console.log(color);
+        },
+        deleteLabel(label) {
+            if (this.isActiveLabel(label)) return
+            this.$emit('delete-label', label)
+        },
+        isActiveLabel(label) {
+            return this.activeLabels.find(l => l.id === label.id)
         }
+
     },
     computed: {
         btnText() {
@@ -67,7 +94,8 @@ export default {
     components: {
         divider,
         editIcon,
-        colorPour, colorPicker
+        colorPour, colorPicker,
+        deleteIcon
 
     },
 }
@@ -91,6 +119,8 @@ export default {
     padding: 16px 24px 8px;
     font-family: Figtree, Roboto, Rubik, Noto Kufi Arabic, Noto Sans JP;
 
+    .selected-label {}
+
     .label-edit {
         display: flex;
         border-radius: 4px;
@@ -98,8 +128,31 @@ export default {
         border-color: #E6E9EF;
         align-items: center;
         padding: 4px;
-        overflow: hidden;
+        // overflow: hidden;
         margin-block-end: 8px;
+        position: relative;
+
+        .delete-icon {
+            position: absolute;
+            right: -21px;
+            opacity: 0;
+            transition: opacity 100ms ease-in-out;
+
+        }
+
+        &:hover {
+            svg {
+                opacity: 0.7;
+
+                &.unactive-label:hover {
+                    cursor: pointer;
+                    background-color: #dcdfec;
+                    opacity: 1;
+                    border-radius: 4px;
+
+                }
+            }
+        }
 
         span {
             height: 24px;
@@ -171,10 +224,16 @@ export default {
         }
     }
 
+    .new-label {
+        border: 1px solid #e6e9ef;
+        margin-block-end: 8px;
+    }
+
     .label {
         width: 100%;
         height: 32px;
         line-height: 32px;
+        margin-block-end: 8px;
         text-align: center;
         border-radius: 2px;
         padding: 0 4px;
@@ -184,7 +243,6 @@ export default {
         cursor: pointer;
         transition: transform 0.1s ease-in-out, opacity 0.1s ease-in-out;
         position: relative;
-        margin-bottom: 8px;
 
         &:hover {
             opacity: 0.85;
