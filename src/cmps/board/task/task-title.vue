@@ -22,9 +22,10 @@ export default {
         task: {
             type: Object,
             required: true
-        }
+        },
+
     },
-    name: '',
+    name: 'task-title',
     data() {
         return {
             isEditable: false

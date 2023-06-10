@@ -113,13 +113,13 @@
       }
       & > *:not(:first-child) {
         cursor: pointer;
-        box-shadow: 4px 3px 6px -3px #c3c6d4;
+        // box-shadow: 4px 3px 6px -3px #c3c6d4;
         background-color: rgb(245, 246, 248);
       }
     }
 
     &.selected {
-      & > *:not(:first-child) {
+      & > *:not(:first-child):not(:last-child) {
         background-color: rgb(204, 229, 255);
       }
     }
@@ -194,6 +194,85 @@
         transition: fill 200ms ease;
         &:hover {
           fill: #0073ea;
+        }
+      }
+    }
+  }
+
+  .add-task {
+    opacity: 0.6;
+
+    &.input-focused {
+      opacity: 1;
+      & > *:not(:first-child) {
+        background-color: rgb(204, 229, 255);
+      }
+    }
+
+    &:hover {
+      opacity: 1;
+
+      .input-wrapper {
+        input {
+          border-color: #c3c6d4;
+        }
+      }
+      & > *:not(:first-child):not(:last-child) {
+        // background-color: rgb(204, 229, 255);
+      }
+
+      .styled-checkbox {
+        fill-opacity: 0;
+      }
+    }
+    .task-checkbox {
+      cursor: auto;
+    }
+    .styled-checkbox-input-wrapper {
+      svg {
+        fill-opacity: 0;
+      }
+    }
+    .input-wrapper {
+      display: flex;
+      align-items: center;
+      padding-inline-start: 21px;
+      input {
+        width: 315px;
+        padding-inline-start: 23px;
+        border: 1px solid transparent;
+        outline: none;
+        background-color: transparent;
+        color: inherit;
+        font-size: 14px;
+        font-family: inherit;
+        height: 24px;
+        border-radius: 4px;
+        &:focus-within {
+          border-color: #0085ff;
+          background-color: white;
+        }
+      }
+      .task-name {
+        border: 1px solid transparent;
+        padding-top: 2px;
+        margin: 6px 10px;
+        border-radius: 4px;
+        width: 325px;
+        border: solid 1px;
+        border-color: #0073ea;
+
+        &:hover {
+          outline: none;
+        }
+      }
+    }
+
+    .task-checkbox {
+      .styled-checkbox {
+        cursor: auto;
+        &:hover {
+          border-color: #c3c6d4;
         }
       }
     }

@@ -34,7 +34,7 @@
             @drop="(e) => onCardDrop(group, e)">
             <Draggable v-for="task in group.tasks" :key="task.id">
                 <section class="group-grid grid" :class="{ 'selected': selectedTasks.includes(task) }"
-                    :style="{ 'grid-template-columns': `30px 6px 33px 360px repeat(${cmpsOrder.length}, 140px)` }">
+                    :style="gridTemplateStyle">
                     <pulse-menu-button />
                     <left-indicator :color="group.style?.color" />
                     <section class="grid-item task-checkbox">
@@ -52,9 +52,25 @@
                     <section class="grid-item" v-for="(cmp, idx) in cmpsOrder" :key="cmp">
                         <component @updateTask="updateTask" :is="cmp" :task="task"></component>
                     </section>
+                    <div></div>
                 </section>
             </Draggable>
         </Container>
+        <section class="add-task group-grid grid" :class="{ 'input-focused': isAddInpOnFocus }"
+            :style="gridAddTemplateStyle">
+            <div></div>
+            <left-indicator :color="group.style?.color" />
+            <section class="task-checkbox">
+                <div class="styled-checkbox-input-wrapper">
+                    <div class="styled-checkbox" :class="{ 'checked-bg': selectedTasks.includes(task) }">
+                        <checked-mark-icon />
+                    </div>
+                </div>
+            </section>
+            <div class="input-wrapper">
+                <add-task-inp v-model="taskTitle" @on-add-task="addTask" @on-input-focus="hadleInpFocus" />
+            </div>
+        </section>
     </section>
 </template>
 <script>
@@ -71,7 +87,7 @@ import chatGrey from '../../icons/chat-grey.vue';
 import expandIcon from '../../icons/expand-icon.vue'
 import checkedMarkIcon from '../../icons/checked-mark-icon.vue';
 import taskTitle from '../task/task-title.vue';
-
+import addTaskInp from '../../add-task-inp.vue';
 export default {
     props: {
         group: {
@@ -86,13 +102,24 @@ export default {
             isTitleEdit: false,
             selectedTasks: [],
             isSelectAll: false,
-            isEditable: false
+            isEditable: false,
+            isAddInpOnFocus: false,
+            taskTitle: ''
         }
     },
     created() {
         this.cmpsOrder = [...this.board.cmpsOrder]
     },
     methods: {
+        addTask() {
+            if (!this.taskTitle) return
+            this.$store.dispatch({ type: "addTask", taskTitle: this.taskTitle, groupId: this.group.id })
+            this.taskTitle = ''
+        },
+        hadleInpFocus(isFocus) {
+            console.log('this', this.taskTitle)
+            this.isAddInpOnFocus = isFocus
+        },
         updateTask(payload) {
             this.$store.dispatch({ type: "updateTask", task: payload.task })
             this.$store.commit({ type: "upadateTask", task: payload.task })
@@ -136,6 +163,12 @@ export default {
         globalSelectedTasks() {
             return this.$store.getters.selectedTasks
         },
+        gridTemplateStyle() {
+            return `grid-template-columns: 30px 6px 33px 360px repeat(${this.cmpsOrder.length}, 140px)`
+        },
+        gridAddTemplateStyle() {
+            return `grid-template-columns: 30px 6px 33px 1fr`
+        }
     },
     watch: {
         board: {
@@ -168,6 +201,7 @@ export default {
         taskTitle,
         chatGrey,
         expandIcon,
+        addTaskInp,
         checkedMarkIcon
     }
 }

@@ -15,6 +15,7 @@ export const boardService = {
   updateTask,
   getChatMsg,
   getEmptyLabel,
+  getEmptyTask,
 }
 window.cs = boardService
 
@@ -48,6 +49,25 @@ async function save(board) {
     savedBoard = await storageService.post(STORAGE_KEY, board)
   }
   return savedBoard
+}
+
+function getEmptyTask(taskTitle) {
+  return {
+    id: utilService.makeId(),
+    title: taskTitle,
+    status: { id: 4, title: '', color: 'rgb(196, 196, 196)' },
+    priority: { id: 5, title: '', color: 'rgb(196, 196, 196)' },
+    description: '',
+    comments: [],
+    checklists: [],
+    members: [],
+    labelIds: [],
+    dueDate: null,
+    byMember: userService.getLoggedinUser(),
+    style: {
+      bgColor: '#26de81',
+    },
+  }
 }
 
 async function updateTask(task, boardId) {
@@ -294,6 +314,7 @@ function getEmptyLabel() {
       { id: 2, title: 'Medium', color: 'rgb(85, 89, 223)' },
       { id: 3, title: 'Low', color: 'rgb(87, 155, 252)' },
       { id: 4, title: 'Critical ⚠️️', color: '#323338' },
+      { id: 5, title: '', color: 'rgb(196, 196, 196)' },
     ],
     statusLabels: [
       { id: 1, title: 'Working on it', color: 'rgb(253, 171, 61)' },

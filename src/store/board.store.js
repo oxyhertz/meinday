@@ -1,5 +1,4 @@
 import { boardService } from '../services/board.service.local'
-
 export function getActionRemoveBoard(boardId) {
   return {
     type: 'removeBoard',
@@ -69,6 +68,13 @@ export const boardStore = {
       )
       const idx = group.tasks.findIndex((t) => t.id === task.id)
       group.tasks.splice(idx, 1, task)
+      state.board = { ...state.board }
+    },
+    addTask(state, { groupId, taskTitle }) {
+      const group = state.board.groups.find((group) => group.id === groupId)
+      const task = boardService.getEmptyTask(taskTitle)
+      console.log('🚀 ~ file: board.store.js:76 ~ addTask ~ task:', task)
+      group.tasks.push(task)
       state.board = { ...state.board }
     },
   },
@@ -165,6 +171,15 @@ export const boardStore = {
         context.dispatch({ type: 'updateBoard', board: newBoard })
       } catch (err) {
         console.log('boardStore: Error in addBoardMsg', err)
+        throw err
+      }
+    },
+    async addTask(context, { taskTitle, groupId }) {
+      try {
+        context.commit({ type: 'addTask', taskTitle, groupId })
+        await boardService.save(context.state.board)
+      } catch (error) {
+        console.log('boardStore: Error in adding task', err)
         throw err
       }
     },
