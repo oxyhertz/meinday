@@ -6,7 +6,7 @@
 <script>
 export default {
     name: 'add-task-input',
-    emits: ['on-input-focus'],
+    emits: ['on-input-focus', 'update:modelValue', 'on-add-task'],
     props: {
         modelValue: {
             type: String,

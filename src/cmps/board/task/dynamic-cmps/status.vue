@@ -28,7 +28,6 @@ export default {
         }
     },
     created() {
-        console.log("🚀 ~ file: status.vue:24 ~ type:", this.task)
 
     },
     data() {

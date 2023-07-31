@@ -73,7 +73,6 @@ export const boardStore = {
     addTask(state, { groupId, taskTitle }) {
       const group = state.board.groups.find((group) => group.id === groupId)
       const task = boardService.getEmptyTask(taskTitle)
-      console.log('🚀 ~ file: board.store.js:76 ~ addTask ~ task:', task)
       group.tasks.push(task)
       state.board = { ...state.board }
     },
